@@ -1,0 +1,23 @@
+##########
+## Redirects everything to HTTPS
+##########
+
+RewriteEngine On 
+RewriteCond %{HTTPS} off 
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+
+##########
+## Redirects everything to index.php except supported file formats
+##########
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteCond %{REQUEST_FILENAME} !\.(png|jpg|jpeg|webp|bmp|tiff|)$
+RewriteRule ^(.*)$ /index.php?path=$1 [NC,L,QSA]
+
+# Know more:
+# https://stackoverflow.com/questions/18406156/redirect-all-to-index-php-using-htaccess
+# Note: Image rewrite cond was taken from the last answer of this post:
+# https://stackoverflow.com/questions/7060932/how-to-redirect-all-requests-to-a-file-except-images-using-apache

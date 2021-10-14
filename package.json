@@ -1,0 +1,28 @@
+{
+  "name": "my-first-friendly-guacamole-site",
+  "author": "Guacamole Hero",
+  "license": "ISC",
+  "version": "0.0.1",
+  "main": "gulpfile.js/index.js",
+  "scripts": {
+    "watch": "gulp watch"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-clean": "^0.4.0",
+    "gulp-cli": "^2.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-copy": "^4.0.1",
+    "gulp-pupa": "^1.0.0",
+    "gulp-replace": "^1.1.2",
+    "gulp-sass": "^4.1.0",
+    "gulp-uglify": "^3.0.2",
+    "gulp-watch": "^5.0.1",
+    "node-sass": "^5.0.0"
+  },
+  "dependencies": {
+    "run": "^1.4.0",
+    "tailwindcss": "^2.2.16",
+    "watch": "^1.0.2"
+  }
+}

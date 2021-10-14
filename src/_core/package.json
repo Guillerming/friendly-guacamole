@@ -1,0 +1,10 @@
+{
+  "name": "friendly-guacamole",
+  "author": "Guillerming",
+  "license": "ISC",
+  "version": "0.0.1",
+  "index": "gulpfile.js",
+  "scripts": {},
+  "devDependencies": {},
+  "dependencies": {}
+}
