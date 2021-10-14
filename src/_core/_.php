@@ -1,7 +1,6 @@
 <?php
 
-    include('modules/components/loader.php');
-    include('modules/components/registry.php');
+    require_once('modules/ComponentsModule.php');
 
     class FriendlyGuacamole {
 
@@ -12,8 +11,7 @@
         public $PUBLIC_DIR;
 
         // Modules
-        public $ModuleComponentRegistry;
-        public $ModuleComponentLoader;
+        public $Components;
 
         function __construct() {
             // Directories
@@ -25,13 +23,9 @@
 
         private function init_components() {
             // Assign Modules
-            $this->ModuleComponentLoader = new ComponentLoader;
-            $this->ModuleComponentRegistry = new ComponentRegistry;
+            $this->Components = new ComponentsModule;
             // Init Modules
-            $this->ModuleComponentRegistry->init();
-            $this->ModuleComponentLoader->init();
-            // Start execution
-            $this->ModuleComponentLoader->load();
+            $this->Components->init();
         }
 
         public function init() {

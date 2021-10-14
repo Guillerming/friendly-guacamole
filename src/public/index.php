@@ -1,16 +1,13 @@
 <?php
 
-    include('../_core/_.php');
+    require('../_core/_.php');
     $friendlyGuacamole->init();
 
-    echo '<p>$friendlyGuacamole->ModuleComponentLoader->get_components()</p>';
-    echo '<pre>';
-    var_dump( $friendlyGuacamole->ModuleComponentLoader->get_components() );
-    echo '</pre>';
+    // echo '<p>$friendlyGuacamole->Components->data()</p>';
+    // echo '<pre>';
+    // var_dump( $friendlyGuacamole->Components->data() );
+    // echo '</pre>';
 
-    echo '<p>$friendlyGuacamole->ModuleComponentRegistry->get()</p>';
-    echo '<pre>';
-    var_dump( $friendlyGuacamole->ModuleComponentRegistry->get() );
-    echo '</pre>';
+    // $friendlyGuacamole->Components->html('PAGE_HOME');
 
 ?>
