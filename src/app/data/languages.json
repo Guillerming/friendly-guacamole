@@ -1,0 +1,51 @@
+{
+    "en": {
+        "enabled": true,
+        "name": "English",
+        "slug": "english",
+        "iso": "en",
+        "region": "INT"
+    },
+    "en_US": {
+        "enabled": true,
+        "name": "English",
+        "slug": "english",
+        "iso": "en",
+        "region": "US"
+    },
+    "es_ES": {
+        "enabled": false,
+        "name": "Español",
+        "slug": "español",
+        "iso": "es",
+        "region": "ES"
+    },
+    "fr_FR": {
+        "enabled": false,
+        "name": "Français",
+        "slug": "francais",
+        "iso": "fr",
+        "region": "FR"
+    },
+    "it_IT": {
+        "enabled": false,
+        "name": "Italiano",
+        "slug": "italiano",
+        "iso": "it",
+        "region": "IT"
+    },
+    "de_DE": {
+        "enabled": false,
+        "name": "Deustch",
+        "slug": "deustch",
+        "iso": "de",
+        "region": "DE"
+    },
+    "pt_PT": {
+        "enabled": false,
+        "name": "Português",
+        "slug": "portugues",
+        "iso": "pt",
+        "region": "PT"
+    }
+}

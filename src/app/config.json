@@ -1,0 +1,19 @@
+{
+    "injections": {
+        "styles": [],
+        "script": []
+    },
+    "defaults": {
+        "language": "en_US",
+        "components": {
+            "wrap": {
+                "templates": true,
+                "styles": true,
+                "scripts": true
+            }
+        }
+    },
+    "build": {
+        "output_type": "aot"
+    }
+}
