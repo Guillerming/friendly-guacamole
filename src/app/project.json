@@ -1,7 +1,12 @@
 {
-    "injections": {
-        "styles": [],
-        "script": []
+    "dependencies": {
+        "styles": [
+            "bootstrap/dist/css/bootstrap.min.css"
+        ],
+        "scripts": [
+            "jquery/dist/jquery.min.js",
+            "bootstrap/dist/js/bootstrap.bundle.min.js"
+        ]
     },
     "defaults": {
         "language": "en_US",

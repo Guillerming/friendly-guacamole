@@ -14,6 +14,8 @@ const watch = require('./tasks/watch');
 
 // exporting tasks
 
+exports.styles = scss.dependencies;
+exports.scripts = js.dependencies;
 exports.watch = watch.run;
 exports.staging = series(
     clean.run,
