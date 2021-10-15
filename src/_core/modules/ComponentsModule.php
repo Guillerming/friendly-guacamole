@@ -152,10 +152,6 @@
             }
         }
 
-        public function get_app_dir() {
-            return $this->friendlyGuacamole->APP_DIR;
-        }
-
         // Init
 
         public function init() {
