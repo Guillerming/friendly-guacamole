@@ -1,13 +1,18 @@
 <?php
 
-    require('../_core/app.php');
+    // Load App
+    require_once('../_core/app.php');
+    // Init app + alias
     $friendlyGuacamole->init();
+    $fg = $friendlyGuacamole;
 
-    echo '<p>$friendlyGuacamole->ComponentsModule->data()</p>';
+    // Testing
+    echo '<p>$fg->ComponentsModule->data()</p>';
     echo '<pre>';
-    var_dump( $friendlyGuacamole->ComponentsModule->data() );
+    var_dump( $fg->ComponentsModule->data() );
     echo '</pre>';
 
-    // $friendlyGuacamole->ComponentsModule->html('COMPONENT_FOOTER');
+    $fg->ComponentsModule->html('COMPONENT_HEADER');
+    $fg->ComponentsModule->html('COMPONENT_FOOTER');
 
 ?>
