@@ -3,6 +3,7 @@
     require_once('lib.php');
 
     require_once('modules/ContentsLoaderModule.php');
+    require_once('modules/LayoutsModule.php');
     require_once('modules/PagesModule.php');
     require_once('modules/ComponentsModule.php');
 
@@ -17,6 +18,7 @@
 
         // Modules
         public $ContentsLoaderModule;
+        public $LayoutsModule;
         public $PagesModule;
         public $ComponentsModule;
 
@@ -34,9 +36,11 @@
         private function init_modules() {
             // Assign Modules
             $this->ContentsLoaderModule = new ContentsLoaderModule();
+            $this->LayoutsModule = new LayoutsModule();
             $this->PagesModule = new PagesModule();
             $this->ComponentsModule = new ComponentsModule();
             // Init Modules
+            $this->LayoutsModule->init();
             $this->PagesModule->init();
             $this->ComponentsModule->init();
         }

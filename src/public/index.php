@@ -11,9 +11,15 @@
     echo '<pre>';
     var_dump( $fg->PagesModule->data() );
     echo '</pre>';
+
     echo '<p>$fg->ComponentsModule->data()</p>';
     echo '<pre>';
     var_dump( $fg->ComponentsModule->data() );
+    echo '</pre>';
+
+    echo '<p>$fg->LayoutsModule->data()</p>';
+    echo '<pre>';
+    var_dump( $fg->LayoutsModule->data() );
     echo '</pre>';
 
     $fg->ComponentsModule->html('COMPONENT_HEADER');
