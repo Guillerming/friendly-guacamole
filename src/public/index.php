@@ -1,13 +1,13 @@
 <?php
 
-    require('../_core/_.php');
+    require('../_core/app.php');
     $friendlyGuacamole->init();
 
-    // echo '<p>$friendlyGuacamole->Components->data()</p>';
-    // echo '<pre>';
-    // var_dump( $friendlyGuacamole->Components->data() );
-    // echo '</pre>';
+    echo '<p>$friendlyGuacamole->ComponentsModule->data()</p>';
+    echo '<pre>';
+    var_dump( $friendlyGuacamole->ComponentsModule->data() );
+    echo '</pre>';
 
-    // $friendlyGuacamole->Components->html('PAGE_HOME');
+    // $friendlyGuacamole->ComponentsModule->html('COMPONENT_FOOTER');
 
 ?>

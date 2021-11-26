@@ -6,8 +6,7 @@
         private $component_index;
 
         private $friendlyGuacamole;
-        private $component_registry_filename = '_.php';
-        private $components_dirname = 'components';
+        private $component_registry_filename = '.component.php';
         private $skipping_files = array('.', '..', '.DS_Store', 'thumbs.db', '.gitkeep', '.gitignore', 'i18n', 'view');
 
         function __construct() {
@@ -80,13 +79,12 @@
         }
 
         private function add( $filename, $path_collection ) {
-            if ( $filename != $this->component_registry_filename ) { return; }
+            if ( strpos($filename, $this->component_registry_filename) === false ) { return; }
             array_push($this->component_index, array('path_collection' => $path_collection, 'file' => $filename));
         }
 
         private function read_directories() {
-            $path_collection = explode('/', $this->friendlyGuacamole->APP_DIR);
-            array_push($path_collection, $this->components_dirname);
+            $path_collection = explode('/', $this->friendlyGuacamole->CODE_DIR);
             $this->check_directory( $path_collection );
         }
 
@@ -146,7 +144,7 @@
             if ( !isset($this->component_registry[$component_id]) ) {
                 return false;
             }
-            global $friendlyGuacamole;
+            // global $friendlyGuacamole;
             for ( $n = 0; $n < count($this->component_registry[$component_id]['view']['templates']); $n++ ) {
                 require_once($this->component_registry[$component_id]['view']['templates'][$n]);
             }
