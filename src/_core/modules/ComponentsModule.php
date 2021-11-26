@@ -144,9 +144,9 @@
             if ( !isset($this->component_registry[$component_id]) ) {
                 return false;
             }
-            // global $friendlyGuacamole;
+            global $friendlyGuacamole;
             for ( $n = 0; $n < count($this->component_registry[$component_id]['view']['templates']); $n++ ) {
-                require_once($this->component_registry[$component_id]['view']['templates'][$n]);
+                require($this->component_registry[$component_id]['view']['templates'][$n]);
             }
         }
 
