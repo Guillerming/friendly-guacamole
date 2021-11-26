@@ -7,6 +7,10 @@
     $fg = $friendlyGuacamole;
 
     // Testing
+    echo '<p>$fg->PagesModule->data()</p>';
+    echo '<pre>';
+    var_dump( $fg->PagesModule->data() );
+    echo '</pre>';
     echo '<p>$fg->ComponentsModule->data()</p>';
     echo '<pre>';
     var_dump( $fg->ComponentsModule->data() );
