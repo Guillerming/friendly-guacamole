@@ -2,11 +2,11 @@
 
     class ComponentsModule {
 
-        private $component_registry;
-        private $component_index;
+        private $components_registry;
+        private $components_index;
 
         private $friendlyGuacamole;
-        private $component_registry_filename = '.component.php';
+        private $components_registry_filename = '.component.php';
         private $skipping_files = array('.', '..', '.DS_Store', 'thumbs.db', '.gitkeep', '.gitignore', 'i18n', 'view');
 
         function __construct() {
@@ -79,8 +79,8 @@
         }
 
         private function add( $filename, $path_collection ) {
-            if ( strpos($filename, $this->component_registry_filename) === false ) { return; }
-            array_push($this->component_index, array('path_collection' => $path_collection, 'file' => $filename));
+            if ( strpos($filename, $this->components_registry_filename) === false ) { return; }
+            array_push($this->components_index, array('path_collection' => $path_collection, 'file' => $filename));
         }
 
         private function read_directories() {
@@ -89,8 +89,8 @@
         }
 
         private function require_components() {
-            for ( $n = 0; $n < count($this->component_index); $n++ ) {
-                require_once( $this->path_collection_to('string', $this->component_index[$n]['path_collection']).$this->component_index[$n]['file'] );
+            for ( $n = 0; $n < count($this->components_index); $n++ ) {
+                require_once( $this->path_collection_to('string', $this->components_index[$n]['path_collection']).$this->components_index[$n]['file'] );
             }
         }
 
@@ -122,39 +122,39 @@
                     }
                 }
             }
-            $this->component_registry[$component['id']] = $array;
+            $this->components_registry[$component['id']] = $array;
         }
 
         // TODO: private validatePath -> when a component is submitted validate it has/or it doesn't a slash (/) at the beginning of the path
 
         public function data( $component_id = null ) {
             if ( !$component_id ) {
-                return $this->component_registry;
+                return $this->components_registry;
             }
-            if ( !isset($this->component_registry[$component_id]) ) {
+            if ( !isset($this->components_registry[$component_id]) ) {
                 return false;
             }
-            return $this->component_registry[$component_id];
+            return $this->components_registry[$component_id];
         }
 
         public function html( $component_id ) {
             if ( !$component_id ) {
                 return false;
             }
-            if ( !isset($this->component_registry[$component_id]) ) {
+            if ( !isset($this->components_registry[$component_id]) ) {
                 return false;
             }
             global $friendlyGuacamole;
-            for ( $n = 0; $n < count($this->component_registry[$component_id]['view']['templates']); $n++ ) {
-                require($this->component_registry[$component_id]['view']['templates'][$n]);
+            for ( $n = 0; $n < count($this->components_registry[$component_id]['view']['templates']); $n++ ) {
+                require($this->components_registry[$component_id]['view']['templates'][$n]);
             }
         }
 
         // Init
 
         public function init() {
-            $this->component_registry = array();
-            $this->component_index = array();
+            $this->components_registry = array();
+            $this->components_index = array();
             $this->read_directories();
             $this->require_components();
         }
