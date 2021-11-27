@@ -9,7 +9,7 @@
         ]
     },
     "defaults": {
-        "language": "en_US",
+        "language": "en-US",
         "components": {
             "wrap": {
                 "templates": true,
