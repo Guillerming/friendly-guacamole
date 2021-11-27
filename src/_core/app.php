@@ -13,6 +13,8 @@
     class FriendlyGuacamole {
 
         // Directories
+        public $ROOT_DIR;
+        public $BUILD_DIR;
         public $HOME_DIR;
         public $CORE_DIR;
         public $APP_DIR;
@@ -34,7 +36,9 @@
 
         function __construct() {
             // Directories
-            $this->HOME_DIR = str_replace('_core', '', __DIR__);
+            $this->ROOT_DIR = str_replace('build/_core', '', __DIR__);
+            $this->BUILD_DIR = $this->ROOT_DIR.'build/';
+            $this->HOME_DIR = $this->ROOT_DIR.'src/';
             $this->CORE_DIR = $this->HOME_DIR.'_core/';
             $this->APP_DIR = $this->HOME_DIR.'app/';
             $this->CONTENTS_DIR = $this->APP_DIR.'contents/';

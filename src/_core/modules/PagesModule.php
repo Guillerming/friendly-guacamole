@@ -18,7 +18,11 @@
         public function register( $page, $path ) {
             // TODO: All pages must contain id, pointers, layout and route
             // so verify $page contents and print error if there's anything missing
+            // Trim path
+            $path = str_replace( $this->friendlyGuacamole->HOME_DIR, '', $path );
+            // Init array var
             $array = array();
+            // Copy $page contents to $array
             if ( isset($page['id']) ) {
                 $array['id'] = $page['id'];
             }

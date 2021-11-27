@@ -16,6 +16,8 @@
         }
 
         public function register( $layout, $path ) {
+            // Trim path
+            $path = str_replace( $this->friendlyGuacamole->HOME_DIR, '', $path );
             $array = array();
             if ( isset($layout['id']) ) {
                 $array['id'] = $layout['id'];
