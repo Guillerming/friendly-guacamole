@@ -11,7 +11,11 @@
                 'styles' => array('view/style.scss'),
                 'scripts' => array('view/script.js')
             ),
-            'layout' => 'LAYOUT_PUBLIC'
+            'layout' => 'LAYOUT_PUBLIC',
+            'route' => array(
+                'id' => 'ROUTE_HOME',
+                'method' => 'GET'
+            )
         );
 
         $friendlyGuacamole->PagesModule->register($page, __DIR__);

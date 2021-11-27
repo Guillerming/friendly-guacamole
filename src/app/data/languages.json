@@ -6,42 +6,42 @@
         "iso": "en",
         "region": "INT"
     },
-    "en_US": {
+    "en-US": {
         "enabled": true,
         "name": "English",
         "slug": "english",
         "iso": "en",
         "region": "US"
     },
-    "es_ES": {
+    "es-ES": {
         "enabled": false,
         "name": "Español",
         "slug": "español",
         "iso": "es",
         "region": "ES"
     },
-    "fr_FR": {
+    "fr-FR": {
         "enabled": false,
         "name": "Français",
         "slug": "francais",
         "iso": "fr",
         "region": "FR"
     },
-    "it_IT": {
+    "it-IT": {
         "enabled": false,
         "name": "Italiano",
         "slug": "italiano",
         "iso": "it",
         "region": "IT"
     },
-    "de_DE": {
+    "de-DE": {
         "enabled": false,
         "name": "Deustch",
         "slug": "deustch",
         "iso": "de",
         "region": "DE"
     },
-    "pt_PT": {
+    "pt-PT": {
         "enabled": false,
         "name": "Português",
         "slug": "portugues",
