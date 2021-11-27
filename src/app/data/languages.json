@@ -1,6 +1,7 @@
 {
     "en": {
         "enabled": true,
+        "lang_code": "en",
         "name": "English",
         "slug": "english",
         "iso": "en",
@@ -8,6 +9,7 @@
     },
     "en-US": {
         "enabled": true,
+        "lang_code": "en-US",
         "name": "English",
         "slug": "english",
         "iso": "en",
@@ -15,6 +17,7 @@
     },
     "es-ES": {
         "enabled": false,
+        "lang_code": "es-ES",
         "name": "Español",
         "slug": "español",
         "iso": "es",
@@ -22,6 +25,7 @@
     },
     "fr-FR": {
         "enabled": false,
+        "lang_code": "fr-FR",
         "name": "Français",
         "slug": "francais",
         "iso": "fr",
@@ -29,6 +33,7 @@
     },
     "it-IT": {
         "enabled": false,
+        "lang_code": "it-IT",
         "name": "Italiano",
         "slug": "italiano",
         "iso": "it",
@@ -36,6 +41,7 @@
     },
     "de-DE": {
         "enabled": false,
+        "lang_code": "de-DE",
         "name": "Deustch",
         "slug": "deustch",
         "iso": "de",
@@ -43,6 +49,7 @@
     },
     "pt-PT": {
         "enabled": false,
+        "lang_code": "pt-PT",
         "name": "Português",
         "slug": "portugues",
         "iso": "pt",
