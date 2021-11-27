@@ -87,7 +87,7 @@
             if ( $target_type == 'array' ) {
                 return $path_collection;
             } else if ( $target_type == 'string' ) {
-                return '/'.$this->lib->trailing_slash( implode('/', $path_collection) );
+                return '/'.$this->lib->add_trailing_slash( implode('/', $path_collection) );
             }
         }
 

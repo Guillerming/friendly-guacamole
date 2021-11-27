@@ -25,19 +25,19 @@
                 if ( isset($component['view']['templates']) ) {
                     $array['view']['templates'] = array();
                     for ( $n = 0; $n < count($component['view']['templates']); $n++ ) {
-                        array_push( $array['view']['templates'], $this->lib->trailing_slash($path).$component['view']['templates'][$n] );
+                        array_push( $array['view']['templates'], $this->lib->add_trailing_slash($path).$component['view']['templates'][$n] );
                     }
                 }
                 if ( isset($component['view']['styles']) ) {
                     $array['view']['styles'] = array();
                     for ( $n = 0; $n < count($component['view']['styles']); $n++ ) {
-                        array_push( $array['view']['styles'], $this->lib->trailing_slash($path).$component['view']['styles'][$n] );
+                        array_push( $array['view']['styles'], $this->lib->add_trailing_slash($path).$component['view']['styles'][$n] );
                     }
                 }
                 if ( isset($component['view']['scripts']) ) {
                     $array['view']['scripts'] = array();
                     for ( $n = 0; $n < count($component['view']['scripts']); $n++ ) {
-                        array_push( $array['view']['scripts'], $this->lib->trailing_slash($path).$component['view']['scripts'][$n] );
+                        array_push( $array['view']['scripts'], $this->lib->add_trailing_slash($path).$component['view']['scripts'][$n] );
                     }
                 }
             }
