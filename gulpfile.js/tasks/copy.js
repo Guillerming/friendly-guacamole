@@ -3,7 +3,7 @@ const config = require('../config');
 const gulpCopy = require('gulp-copy');
 
 function copy_src() {
-    return src(['src/**/*'])
+    return src(['src/**/*', 'src/public/.htaccess'])
         .pipe(gulpCopy(config.cfg.path.dist, {prefix: 1}));
 }
 
