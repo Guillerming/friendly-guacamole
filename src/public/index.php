@@ -7,22 +7,29 @@
     $fg = $friendlyGuacamole;
 
     // Testing
-    echo '<p>$fg->PagesModule->data()</p>';
+    echo '<p>PagesModule:</p>';
     echo '<pre>';
     var_dump( $fg->PagesModule->data() );
     echo '</pre>';
 
-    echo '<p>$fg->ComponentsModule->data()</p>';
+    // echo '<p>ComponentsModule:</p>';
+    // echo '<pre>';
+    // var_dump( $fg->ComponentsModule->data() );
+    // echo '</pre>';
+
+    // echo '<p>LayoutsModule:</p>';
+    // echo '<pre>';
+    // var_dump( $fg->LayoutsModule->data() );
+    // echo '</pre>';
+
+    echo '<p>RouterModule:</p>';
     echo '<pre>';
-    var_dump( $fg->ComponentsModule->data() );
+    var_dump( $fg->RouterModule->routes );
     echo '</pre>';
 
-    echo '<p>$fg->LayoutsModule->data()</p>';
+    echo '<p>Settings:</p>';
     echo '<pre>';
-    var_dump( $fg->LayoutsModule->data() );
+    var_dump($fg->SETTINGS);
     echo '</pre>';
-
-    $fg->ComponentsModule->html('COMPONENT_HEADER');
-    $fg->ComponentsModule->html('COMPONENT_FOOTER');
 
 ?>

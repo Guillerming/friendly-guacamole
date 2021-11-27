@@ -6,12 +6,16 @@
 
         $page = array(
             'id' => 'PAGE_HOME',
-            'view' => array(
-                'templates' => array('view/template.php'),
-                'styles' => array('view/style.scss'),
-                'scripts' => array('view/script.js')
+            'layout' => array(
+                'id' => 'LAYOUT_PUBLIC',
+                'pointers' => array(
+                    'main' => array(
+                        'templates' => array('view/main/template.php'),
+                        'styles' => array('view/main/style.scss'),
+                        'scripts' => array('view/main/script.js')
+                    ),
+                )
             ),
-            'layout' => 'LAYOUT_PUBLIC',
             'route' => array(
                 'id' => 'ROUTE_HOME',
                 'method' => 'GET'

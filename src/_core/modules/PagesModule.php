@@ -16,42 +16,35 @@
         }
 
         public function register( $page, $path ) {
+            // TODO: All pages must contain id, pointers, layout and route
+            // so verify $page contents and print error if there's anything missing
             $array = array();
             if ( isset($page['id']) ) {
                 $array['id'] = $page['id'];
             }
-            if ( isset($page['view']) ) {
-                $array['view'] = array();
-                if ( isset($page['view']['templates']) ) {
-                    $array['view']['templates'] = array();
-                    for ( $n = 0; $n < count($page['view']['templates']); $n++ ) {
-                        array_push( $array['view']['templates'], $this->lib->add_trailing_slash($path).$page['view']['templates'][$n] );
-                    }
-                }
-                if ( isset($page['view']['styles']) ) {
-                    $array['view']['styles'] = array();
-                    for ( $n = 0; $n < count($page['view']['styles']); $n++ ) {
-                        array_push( $array['view']['styles'], $this->lib->add_trailing_slash($path).$page['view']['styles'][$n] );
-                    }
-                }
-                if ( isset($page['view']['scripts']) ) {
-                    $array['view']['scripts'] = array();
-                    for ( $n = 0; $n < count($page['view']['scripts']); $n++ ) {
-                        array_push( $array['view']['scripts'], $this->lib->add_trailing_slash($path).$page['view']['scripts'][$n] );
-                    }
-                }
-            }
             if ( isset($page['layout']) ) {
                 $array['layout'] = $page['layout'];
+                // Adding $path to pointers
+                foreach ( $array['layout']['pointers'] as $pointer => $data ) {
+                    if ( isset($array['layout']['pointers'][$pointer]['templates']) ) {
+                        for ( $n = 0; $n < count($array['layout']['pointers'][$pointer]['templates']); $n++ ) {
+                            $array['layout']['pointers'][$pointer]['templates'][$n] = $this->lib->add_trailing_slash($path).$data['templates'][$n];
+                        }
+                    }
+                    if ( isset($array['layout']['pointers'][$pointer]['styles']) ) {
+                        for ( $n = 0; $n < count($array['layout']['pointers'][$pointer]['styles']); $n++ ) {
+                            $array['layout']['pointers'][$pointer]['styles'][$n] = $this->lib->add_trailing_slash($path).$data['styles'][$n];
+                        }
+                    }
+                    if ( isset($array['layout']['pointers'][$pointer]['scripts']) ) {
+                        for ( $n = 0; $n < count($array['layout']['pointers'][$pointer]['scripts']); $n++ ) {
+                            $array['layout']['pointers'][$pointer]['scripts'][$n] = $this->lib->add_trailing_slash($path).$data['scripts'][$n];
+                        }
+                    }
+                }
             }
             if ( isset($page['route']) ) {
-                $array['route'] = array();
-                if ( isset($page['route']['id']) ) {
-                    $array['route']['id'] = $page['route']['id'];
-                }
-                if ( isset($page['route']['method']) ) {
-                    $array['route']['method'] = $page['route']['method'];
-                }
+                $array['route'] = $page['route'];
             }
             $this->pages_registry[$page['id']] = $array;
         }
