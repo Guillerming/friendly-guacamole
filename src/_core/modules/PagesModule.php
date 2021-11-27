@@ -41,6 +41,18 @@
                     }
                 }
             }
+            if ( isset($page['layout']) ) {
+                $array['layout'] = $page['layout'];
+            }
+            if ( isset($page['route']) ) {
+                $array['route'] = array();
+                if ( isset($page['route']['id']) ) {
+                    $array['route']['id'] = $page['route']['id'];
+                }
+                if ( isset($page['route']['method']) ) {
+                    $array['route']['method'] = $page['route']['method'];
+                }
+            }
             $this->pages_registry[$page['id']] = $array;
         }
 
