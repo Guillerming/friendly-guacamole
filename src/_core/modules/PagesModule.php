@@ -55,26 +55,26 @@
             // doesn't a slash (/) at the beginning of the path
         // }
 
-        public function data( $pages_id = null ) {
-            if ( !$pages_id ) {
+        public function data( $page_id = null ) {
+            if ( !$page_id ) {
                 return $this->pages_registry;
             }
-            if ( !isset($this->pages_registry[$pages_id]) ) {
+            if ( !isset($this->pages_registry[$page_id]) ) {
                 return false;
             }
-            return $this->pages_registry[$pages_id];
+            return $this->pages_registry[$page_id];
         }
 
-        public function html( $pages_id ) {
-            if ( !$pages_id ) {
+        public function html( $page_id ) {
+            if ( !$page_id ) {
                 return false;
             }
-            if ( !isset($this->pages_registry[$pages_id]) ) {
+            if ( !isset($this->pages_registry[$page_id]) ) {
                 return false;
             }
             global $friendlyGuacamole;
-            for ( $n = 0; $n < count($this->pages_registry[$pages_id]['view']['templates']); $n++ ) {
-                require($this->pages_registry[$pages_id]['view']['templates'][$n]);
+            for ( $n = 0; $n < count($this->pages_registry[$page_id]['view']['templates']); $n++ ) {
+                require($this->pages_registry[$page_id]['view']['templates'][$n]);
             }
         }
 
