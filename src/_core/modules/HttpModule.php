@@ -38,12 +38,13 @@
             if ($pos !== false) {
                 $query = substr($query, $pos + 1, strlen($query) );
             }
-            return '?'.$query;
+            return $query ? '?'.$query : null;
         }
 
         private function get_params() {
             $search = $this->get_search();
             $search = str_replace('?', '', $search);
+            if ( !strlen($search) ) { return null; }
             $output = [];
             $params = explode('&', $search);
             for ( $n = 0; $n < count($params); $n++ ) {
