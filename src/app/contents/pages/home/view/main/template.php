@@ -1,1 +1,1 @@
-footer
+PAGE_HOME

@@ -1,1 +1,1 @@
-footer
+COMPONENT_FOOTER

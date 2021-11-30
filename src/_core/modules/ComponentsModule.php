@@ -52,27 +52,33 @@
             // doesn't a slash (/) at the beginning of the path
         // }
 
-        public function data( $components_id = null ) {
-            if ( !$components_id ) {
+        public function data( $component_id = null ) {
+            if ( !$component_id ) {
                 return $this->components_registry;
             }
-            if ( !isset($this->components_registry[$components_id]) ) {
+            if ( !isset($this->components_registry[$component_id]) ) {
                 return false;
             }
-            return $this->components_registry[$components_id];
+            return $this->components_registry[$component_id];
         }
 
-        public function html( $components_id ) {
-            if ( !$components_id ) {
+        public function html( $component_id ) {
+            if ( !$component_id ) {
                 return false;
             }
-            if ( !isset($this->components_registry[$components_id]) ) {
+            if ( !isset($this->components_registry[$component_id]) ) {
                 return false;
             }
+            $output = '';
+            ob_start(null, 0, PHP_OUTPUT_HANDLER_FLUSHABLE | PHP_OUTPUT_HANDLER_REMOVABLE);
             global $friendlyGuacamole;
-            for ( $n = 0; $n < count($this->components_registry[$components_id]['view']['templates']); $n++ ) {
-                require($this->components_registry[$components_id]['view']['templates'][$n]);
+            for ( $n = 0; $n < count($this->components_registry[$component_id]['view']['templates']); $n++ ) {
+                require($this->friendlyGuacamole->BUILD_DIR.$this->components_registry[$component_id]['view']['templates'][$n]);
+                // $output .= ob_get_contents();
             }
+            // ob_clean();
+            ob_end_flush();
+            return $output;
         }
 
         // Init
@@ -82,4 +88,5 @@
             $this->friendlyGuacamole->ContentsLoaderModule->load($this->components_registry_filename);
         }
     }
+
 ?>

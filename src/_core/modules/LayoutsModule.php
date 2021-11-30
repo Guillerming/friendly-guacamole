@@ -52,27 +52,48 @@
             // doesn't a slash (/) at the beginning of the path
         // }
 
-        public function data( $layouts_id = null ) {
-            if ( !$layouts_id ) {
+        public function data( $layout_id = null ) {
+            if ( !$layout_id ) {
                 return $this->layouts_registry;
             }
-            if ( !isset($this->layouts_registry[$layouts_id]) ) {
+            if ( !isset($this->layouts_registry[$layout_id]) ) {
                 return false;
             }
-            return $this->layouts_registry[$layouts_id];
+            return $this->layouts_registry[$layout_id];
         }
 
-        public function html( $layouts_id ) {
-            if ( !$layouts_id ) {
+        public function html( $layout_id ) {
+            if ( !$layout_id ) {
                 return false;
             }
-            if ( !isset($this->layouts_registry[$layouts_id]) ) {
+            if ( !isset($this->layouts_registry[$layout_id]) ) {
                 return false;
             }
+            // Loading layout templates
+            $output = '';
+            ob_start();
             global $friendlyGuacamole;
-            for ( $n = 0; $n < count($this->layouts_registry[$layouts_id]['view']['templates']); $n++ ) {
-                require($this->layouts_registry[$layouts_id]['view']['templates'][$n]);
+            for ( $n = 0; $n < count($this->layouts_registry[$layout_id]['view']['templates']); $n++ ) {
+                require($this->friendlyGuacamole->BUILD_DIR.$this->layouts_registry[$layout_id]['view']['templates'][$n]);
+                $output .= ob_get_contents();
             }
+            ob_clean();
+            // Replacing pointers
+            $pointers = $this->friendlyGuacamole->RouterModule->state['controller']['layout']['pointers'];
+            foreach ( $pointers as $pointer => $data ) {
+                // Loading templates for current pointer
+                $templates = '';
+                ob_start();
+                for ( $i = 0; $i < count($data['templates']); $i++ ) {
+                    require( $this->friendlyGuacamole->BUILD_DIR.$data['templates'][$i] );
+                    $templates .= ob_get_contents();
+                }
+                ob_clean();
+                // Replacing pointers with loaded templates
+                $output = str_replace( '{{layout-pointer.'.$pointer.'}}', $templates, $output );
+            }
+            // Returning html
+            return $output;
         }
 
         // Init

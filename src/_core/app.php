@@ -9,6 +9,7 @@
     require_once('modules/ComponentsModule.php');
     require_once('modules/HttpModule.php');
     require_once('modules/RouterModule.php');
+    require_once('modules/RenderModule.php');
 
     class FriendlyGuacamole {
 
@@ -21,6 +22,7 @@
         public $CONTENTS_DIR;
         public $DATA_DIR;
         public $PUBLIC_DIR;
+        // public $output;
 
         // Settings
         public $SETTINGS;
@@ -33,8 +35,10 @@
         public $ComponentsModule;
         public $HttpModule;
         public $RouterModule;
+        public $RenderModule;
 
         function __construct() {
+            // $this->output = '';
             // Directories
             $this->ROOT_DIR = str_replace('build/_core', '', __DIR__);
             $this->BUILD_DIR = $this->ROOT_DIR.'build/';
@@ -63,6 +67,7 @@
             $this->ComponentsModule = new ComponentsModule();
             $this->HttpModule = new HttpModule();
             $this->RouterModule = new RouterModule();
+            $this->RenderModule = new RenderModule();
             // Init Modules
             $this->LanguagesModule->init();
             $this->LayoutsModule->init();

@@ -76,10 +76,18 @@
             if ( !isset($this->pages_registry[$page_id]) ) {
                 return false;
             }
+            $output = '';
+            ob_start(null, 0, PHP_OUTPUT_HANDLER_FLUSHABLE | PHP_OUTPUT_HANDLER_REMOVABLE);
             global $friendlyGuacamole;
-            for ( $n = 0; $n < count($this->pages_registry[$page_id]['view']['templates']); $n++ ) {
-                require($this->pages_registry[$page_id]['view']['templates'][$n]);
+            foreach ( $this->pages_registry[$page_id]['layout']['pointers'] as $pointer => $data) {
+                for ( $n = 0; $n < count($data['templates']); $n++ ) {
+                    require($this->friendlyGuacamole->BUILD_DIR.$data['templates'][$n]);
+                    // $output .= ob_get_contents();
+                }
             }
+            // ob_clean();
+            ob_end_flush();
+            return $output;
         }
 
         // Init

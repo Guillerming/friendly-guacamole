@@ -1,7 +1,9 @@
 <div class="public-layout">
-    <?php $friendlyGuacamole->ComponentsModule->html('COMPONENT_HEADER'); ?>
+    <?php echo $friendlyGuacamole->ComponentsModule->html('COMPONENT_HEADER'); ?>
 
-    {{layout-pointer.main}}
+    <div class="contents">
+        {{layout-pointer.main}}
+    </div>
 
-    <?php $friendlyGuacamole->ComponentsModule->html('COMPONENT_FOOTER'); ?>
+    <?php echo $friendlyGuacamole->ComponentsModule->html('COMPONENT_FOOTER'); ?>
 </div>

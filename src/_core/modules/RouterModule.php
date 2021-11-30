@@ -3,6 +3,7 @@
     class RouterModule {
 
         public $routes;
+        public $state;
 
         private $friendlyGuacamole;
         private $lib;
@@ -53,10 +54,27 @@
             }
         }
 
+        private function find_matching_path( $url_path ) {
+            // TODO: Err pages, dynamic urls...
+            foreach ( $this->routes as $id => $route ) {
+                foreach ( $route['paths'] as $lang_code => $path ) {
+                    if ( $url_path == $path ) {
+                        return array(
+                            'route' => $this->routes[$id],
+                            'language' => $this->friendlyGuacamole->LanguagesModule->get_language( $lang_code ),
+                            'controller' => $this->friendlyGuacamole->PagesModule->data( $route['controller'] )
+                        );
+                    }
+                }
+            }
+            return false;
+        }
+
         // Public methods
 
         public function init() {
             $this->load_routes();
+            $this->state = $this->find_matching_path( $this->friendlyGuacamole->HttpModule->http['url']['path'] );
         }
     }
 
