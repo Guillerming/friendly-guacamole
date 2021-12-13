@@ -1,6 +1,6 @@
 const { src, dest } = require('gulp');
 const config = require('../config');
-const projectjson = require('../../src/app/project.json');
+const projectjson = require('../../src/app/settings.json');
 
 const minify = require('gulp-uglify');
 const concat = require('gulp-concat');
