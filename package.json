@@ -5,7 +5,16 @@
   "version": "0.0.1",
   "main": "gulpfile.js/index.js",
   "scripts": {
-    "watch": "gulp watch"
+    "watch": "npm run build:pre && gulp watch",
+    "cc": "npm run create:component $args",
+    "create:component": "php src/_core/scripts/create.component.php $args",
+    "cp": "npm run create:page $args",
+    "create:page": "php src/_core/scripts/create.page.php $args",
+    "cl": "npm run create:layout $args",
+    "create:layout": "php src/_core/scripts/create.layout.php $args",
+    "build": "gulp build",
+    "build:pre": "npm run build:vendor",
+    "build:vendor": "php src/_core/scripts/build.vendor.scss.php && php src/_core/scripts/build.vendor.js.php && gulp build-vendor"
   },
   "devDependencies": {
     "gulp": "^4.0.2",
