@@ -1,0 +1,17 @@
+{
+    "id": "PAGE_HOME",
+    "layout": {
+        "id": "LAYOUT_PUBLIC",
+        "pointers": {
+            "main": {
+                "scripts": ["home.page.js"],
+                "styles": ["home.page.scss"],
+                "templates": ["home.page.php"]
+            }
+        }
+    },
+    "route": {
+        "id": "ROUTE_HOME",
+        "method": "GET"
+    }
+}

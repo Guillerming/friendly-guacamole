@@ -6,7 +6,7 @@
 
         private $friendlyGuacamole;
         private $lib;
-        private $pages_registry_filename = '.page.php';
+        private $pages_registry_filename = '_page.register.php';
 
         function __construct() {
             global $friendlyGuacamole;

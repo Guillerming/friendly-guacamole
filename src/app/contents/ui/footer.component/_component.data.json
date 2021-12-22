@@ -1,0 +1,1 @@
+{    "id": "COMPONENT_FOOTER",    "view": {        "scripts": ["footer.component.js"],        "styles": ["footer.component.scss"],        "templates": ["footer.component.php"]    }}

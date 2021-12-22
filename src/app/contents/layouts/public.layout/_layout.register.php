@@ -1,0 +1,1 @@
+<?php    global $lib;    global $friendlyGuacamole;    $layout = $lib->load_json_file(__DIR__.'/_layout.data.json');    $friendlyGuacamole->LayoutsModule->register($layout, __DIR__);?>

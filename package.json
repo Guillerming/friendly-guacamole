@@ -14,7 +14,7 @@
     "create:layout": "php src/_core/scripts/create.layout.php $args",
     "build": "gulp build",
     "build:pre": "npm run build:vendor",
-    "build:vendor": "php src/_core/scripts/build.vendor.scss.php && php src/_core/scripts/build.vendor.js.php && gulp build-vendor"
+    "build:vendor": "php src/_core/scripts/build.vendor.scss.php && php src/_core/scripts/build.vendor.js.php"
   },
   "devDependencies": {
     "gulp": "^4.0.2",

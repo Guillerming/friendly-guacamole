@@ -1,0 +1,1 @@
+{    "id": "LAYOUT_PUBLIC",    "view": {        "scripts": ["public.layout.js"],        "styles": ["public.layout.scss"],        "templates": ["public.layout.php"]    }}

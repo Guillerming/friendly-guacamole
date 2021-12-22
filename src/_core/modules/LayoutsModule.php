@@ -6,7 +6,7 @@
 
         private $friendlyGuacamole;
         private $lib;
-        private $layouts_registry_filename = '.layout.php';
+        private $layouts_registry_filename = '_layout.register.php';
 
         function __construct() {
             global $friendlyGuacamole;

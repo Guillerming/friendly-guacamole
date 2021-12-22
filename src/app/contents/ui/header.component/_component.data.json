@@ -1,0 +1,1 @@
+{    "id": "COMPONENT_HEADER",    "view": {        "scripts": ["header.component.js"],        "styles": ["header.component.scss"],        "templates": ["header.component.php"]    }}

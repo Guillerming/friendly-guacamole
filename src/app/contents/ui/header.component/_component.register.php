@@ -1,0 +1,1 @@
+<?php    global $lib;    global $friendlyGuacamole;    $component = $lib->load_json_file(__DIR__.'/_component.data.json');    $friendlyGuacamole->ComponentsModule->register($component, __DIR__);?>

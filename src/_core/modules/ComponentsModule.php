@@ -6,7 +6,7 @@
 
         private $friendlyGuacamole;
         private $lib;
-        private $components_registry_filename = '.component.php';
+        private $components_registry_filename = '_component.register.php';
 
         function __construct() {
             global $friendlyGuacamole;

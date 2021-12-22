@@ -2,6 +2,10 @@
 
     class Lib {
 
+        public function load_json_file( $path ) {
+            return json_decode( file_get_contents( $path ), true );
+        }
+
         public function add_trailing_slash( $string ) {
             if ( substr( $string, strlen($string) - 1, 1 ) != '/' && strlen($string) ) {
                 return $string.'/';

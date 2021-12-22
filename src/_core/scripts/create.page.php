@@ -23,33 +23,36 @@
         if ( !is_dir( $path ) ) {
             mkdir( $path, 0777, true );
             mkdir( $path.'i18n', 0777, true );
-            mkdir( $path.'i18n/contents', 0777, true );
-            mkdir( $path.'view', 0777, true );
-            mkdir( $path.'view/main', 0777, true );
         } else {
             scriptLogger($path.' already exists.');
             exit(1);
         }
 
+        include(SCRIPTS_DIR.'models/page.data.model.php');
         include(SCRIPTS_DIR.'models/page.model.php');
 
         $PAGE_ID = strtoupper($page_name);
-        $page_model = str_replace('{{PAGE_ID}}', $PAGE_ID, $page_model);
+        $page_name .= '.page';
+        $page_data_model = str_replace('{{PAGE_NAME}}', $page_name, $page_data_model);
+        $page_data_model = str_replace('{{PAGE_ID}}', $PAGE_ID, $page_data_model);
 
-        file_put_contents($path.$page_name.'.page.php', $page_model);
-        scriptLogger('Creating file: '.$path.$page_name.'.page.php');
+        file_put_contents($path.'_page.data.json', $page_data_model);
+        scriptLogger('Creating file: '.$path.'_page.data.json');
 
-        file_put_contents($path.'view/main/script.js', '');
-        scriptLogger('Creating file: '.$path.'view/main/script.js');
+        file_put_contents($path.'_page.register.php', $page_model);
+        scriptLogger('Creating file: '.$path.'_page.register.php');
 
-        file_put_contents($path.'view/main/style.scss', '');
-        scriptLogger('Creating file: '.$path.'view/main/style.scss');
+        file_put_contents($path.$page_name.'.js', '');
+        scriptLogger('Creating file: '.$path.$page_name.'.js');
 
-        file_put_contents($path.'view/main/template.php', $PAGE_ID);
-        scriptLogger('Creating file: '.$path.'view/main/template.php');
+        file_put_contents($path.$page_name.'.scss', '');
+        scriptLogger('Creating file: '.$path.$page_name.'.scss');
 
-        file_put_contents($path.'i18n/contents/'.str_replace('-', '_', $settings['defaults']['language']).'.json', '{}');
-        scriptLogger('Creating file: '.$path.'i18n/contents/'.str_replace('-', '_', $settings['defaults']['language']).'.json');
+        file_put_contents($path.$page_name.'.php', 'PAGE_'.$PAGE_ID);
+        scriptLogger('Creating file: '.$path.$page_name.'.php');
+
+        file_put_contents($path.'i18n/'.$settings['defaults']['language'].'.json', '{}');
+        scriptLogger('Creating file: '.$path.'i18n/'.$settings['defaults']['language'].'.json');
 
         scriptLogger('Component created successfully');
         scriptLogger('Component ID: PAGE_'.$PAGE_ID);

@@ -23,32 +23,36 @@
         if ( !is_dir( $path ) ) {
             mkdir( $path, 0777, true );
             mkdir( $path.'i18n', 0777, true );
-            mkdir( $path.'i18n/contents', 0777, true );
-            mkdir( $path.'view', 0777, true );
         } else {
             scriptLogger($path.' already exists.');
             exit(1);
         }
 
+        include(SCRIPTS_DIR.'models/layout.data.model.php');
         include(SCRIPTS_DIR.'models/layout.model.php');
 
         $LAYOUT_ID = strtoupper($layout_name);
-        $layout_model = str_replace('{{LAYOUT_ID}}', $LAYOUT_ID, $layout_model);
+        $layout_name .= '.layout';
+        $layout_data_model = str_replace('{{LAYOUT_NAME}}', $layout_name, $layout_data_model);
+        $layout_data_model = str_replace('{{LAYOUT_ID}}', $LAYOUT_ID, $layout_data_model);
 
-        file_put_contents($path.$layout_name.'.layout.php', $layout_model);
-        scriptLogger('Creating file: '.$path.$layout_name.'.layout.php');
+        file_put_contents($path.'_layout.data.json', $layout_data_model);
+        scriptLogger('Creating file: '.$path.'_layout.data.json');
 
-        file_put_contents($path.'view/script.js', '');
-        scriptLogger('Creating file: '.$path.'view/script.js');
+        file_put_contents($path.'_layout.register.php', $layout_model);
+        scriptLogger('Creating file: '.$path.'_layout.register.php');
 
-        file_put_contents($path.'view/style.scss', '');
-        scriptLogger('Creating file: '.$path.'view/style.scss');
+        file_put_contents($path.$layout_name.'.js', '');
+        scriptLogger('Creating file: '.$path.$layout_name.'.js');
 
-        file_put_contents($path.'view/template.php', '{{layout-pointer.main}}');
-        scriptLogger('Creating file: '.$path.'view/template.php');
+        file_put_contents($path.$layout_name.'.scss', '');
+        scriptLogger('Creating file: '.$path.$layout_name.'.scss');
 
-        file_put_contents($path.'i18n/contents/'.str_replace('-', '_', $settings['defaults']['language']).'.json', '{}');
-        scriptLogger('Creating file: '.$path.'i18n/contents/'.str_replace('-', '_', $settings['defaults']['language']).'.json');
+        file_put_contents($path.$layout_name.'.php', '{{layout-pointer.main}}');
+        scriptLogger('Creating file: '.$path.$layout_name.'.php');
+
+        file_put_contents($path.'i18n/'.$settings['defaults']['language'].'.json', '{}');
+        scriptLogger('Creating file: '.$path.'i18n/'.$settings['defaults']['language'].'.json');
 
         scriptLogger('Layout created successfully');
         scriptLogger('Layout ID: LAYOUT_'.$LAYOUT_ID);
