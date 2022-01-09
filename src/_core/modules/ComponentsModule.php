@@ -19,8 +19,6 @@
         }
 
         public function register( $component, $path ) {
-            // Trim path
-            $path = str_replace( $this->dir->home, '', $path );
             $array = array();
             if ( isset($component['id']) ) {
                 $array['id'] = $component['id'];

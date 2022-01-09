@@ -19,8 +19,6 @@
         }
 
         public function register( $layout, $path ) {
-            // Trim path
-            $path = str_replace( $this->dir->home, '', $path );
             $array = array();
             if ( isset($layout['id']) ) {
                 $array['id'] = $layout['id'];

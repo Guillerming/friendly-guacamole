@@ -76,6 +76,6 @@
 
     $lib = new Lib;
     $friendlyGuacamole = new FriendlyGuacamole;
-    $fg = $friendlyGuacamole;
+    $fg = $friendlyGuacamole; // Alias
 
 ?>
