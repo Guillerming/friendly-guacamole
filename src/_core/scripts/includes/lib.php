@@ -1,12 +1,14 @@
 <?php
 
-    function scriptLogger( $log ) {
-        echo $log."\n";
+    class ScriptsLib {
+
+        function __construct() {}
+
+        public function scriptLogger( $log ) {
+            echo $log."\n";
+        }
     }
 
-    function getSettings() {
-        global $dir;
-        return json_decode(file_get_contents($dir->app.'settings.json'), true);
-    }
+    $scriptsLib = new ScriptsLib;
 
 ?>
