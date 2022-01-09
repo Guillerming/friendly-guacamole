@@ -20,6 +20,7 @@
 
         private function server( $var ) {
             $var = strtoupper($var);
+            if ( !isset($_SERVER["$var"]) ) { return ''; }
             return $this->sanitize( $_SERVER["$var"] );
         }
 
@@ -43,6 +44,7 @@
 
         private function get_params() {
             $search = $this->get_search();
+            if (!$search) { return []; }
             $search = str_replace('?', '', $search);
             if ( !strlen($search) ) { return null; }
             $output = [];
@@ -62,10 +64,10 @@
                 'path' => $this->get_path(),
                 'search' => $this->get_search(),
                 'params' => $this->get_params(),
-                'protocol' => $_SERVER['SERVER_PROTOCOL'],
-                'host' => $_SERVER['HTTP_HOST'],
-                'port' => $_SERVER['SERVER_PORT'],
-                'method' => $_SERVER['REQUEST_METHOD']
+                'protocol' => $this->server('SERVER_PROTOCOL'),
+                'host' => $this->server('HTTP_HOST'),
+                'port' => $this->server('SERVER_PORT'),
+                'method' => $this->server('REQUEST_METHOD')
             ];
 
         }
