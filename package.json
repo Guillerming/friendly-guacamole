@@ -5,7 +5,7 @@
   "version": "0.0.1",
   "main": "gulpfile.js/index.js",
   "scripts": {
-    "watch": "npm run build:pre && gulp watch",
+    "watch": "gulp watch",
     "cc": "npm run create:component $args",
     "create:component": "php src/_core/scripts/create.component.php $args",
     "cp": "npm run create:page $args",
@@ -13,8 +13,9 @@
     "cl": "npm run create:layout $args",
     "create:layout": "php src/_core/scripts/create.layout.php $args",
     "build": "gulp build",
-    "build:pre": "npm run build:vendor",
-    "build:vendor": "php src/_core/scripts/build.vendor.scss.php && php src/_core/scripts/build.vendor.js.php"
+    "build:pre": "npm run extract:styles",
+    "build:vendor": "php src/_core/scripts/build.vendor.scss.php && php src/_core/scripts/build.vendor.js.php",
+    "extract:styles": "php src/_core/scripts/extract.styles.php"
   },
   "devDependencies": {
     "gulp": "^4.0.2",

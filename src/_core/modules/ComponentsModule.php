@@ -71,14 +71,16 @@
                 return false;
             }
             $output = '';
+            $output .= '<'.$this->lib->convert_entity_id_to_wrapper_tagname($component_id).'>';
             ob_start(null, 0, PHP_OUTPUT_HANDLER_FLUSHABLE | PHP_OUTPUT_HANDLER_REMOVABLE);
             global $friendlyGuacamole;
             for ( $n = 0; $n < count($this->components_registry[$component_id]['view']['templates']); $n++ ) {
                 require($this->components_registry[$component_id]['view']['templates'][$n]);
-                // $output .= ob_get_contents();
+                $output .= ob_get_contents();
             }
-            // ob_clean();
-            ob_end_flush();
+            ob_end_clean();
+            // ob_end_flush();
+            $output .= '</'.$this->lib->convert_entity_id_to_wrapper_tagname($component_id).'>';
             return $output;
         }
 

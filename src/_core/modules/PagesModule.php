@@ -70,26 +70,28 @@
             return $this->pages_registry[$page_id];
         }
 
-        public function html( $page_id ) {
-            if ( !$page_id ) {
-                return false;
-            }
-            if ( !isset($this->pages_registry[$page_id]) ) {
-                return false;
-            }
-            $output = '';
-            ob_start(null, 0, PHP_OUTPUT_HANDLER_FLUSHABLE | PHP_OUTPUT_HANDLER_REMOVABLE);
-            global $friendlyGuacamole;
-            foreach ( $this->pages_registry[$page_id]['layout']['pointers'] as $pointer => $data) {
-                for ( $n = 0; $n < count($data['templates']); $n++ ) {
-                    require($data['templates'][$n]);
-                    // $output .= ob_get_contents();
-                }
-            }
-            // ob_clean();
-            ob_end_flush();
-            return $output;
-        }
+        // public function html( $page_id ) {
+        //     if ( !$page_id ) {
+        //         return false;
+        //     }
+        //     if ( !isset($this->pages_registry[$page_id]) ) {
+        //         return false;
+        //     }
+        //     $output = '';
+        //     $output .= '<'.$this->lib->convert_entity_id_to_wrapper_tagname($page_id).'>';
+        //     ob_start(null, 0, PHP_OUTPUT_HANDLER_FLUSHABLE | PHP_OUTPUT_HANDLER_REMOVABLE);
+        //     global $friendlyGuacamole;
+        //     foreach ( $this->pages_registry[$page_id]['layout']['pointers'] as $pointer => $data) {
+        //         for ( $n = 0; $n < count($data['templates']); $n++ ) {
+        //             require($data['templates'][$n]);
+        //             $output .= ob_get_contents();
+        //         }
+        //     }
+        //     ob_end_clean();
+        //     // ob_end_flush();
+        //     $output .= '</'.$this->lib->convert_entity_id_to_wrapper_tagname($page_id).'>';
+        //     return $output;
+        // }
 
         // Init
 

@@ -74,25 +74,32 @@
             $output = '';
             ob_start();
             global $friendlyGuacamole;
+            $output .= '<'.$this->lib->convert_entity_id_to_wrapper_tagname($layout_id).'>';
             for ( $n = 0; $n < count($this->layouts_registry[$layout_id]['view']['templates']); $n++ ) {
                 require($this->layouts_registry[$layout_id]['view']['templates'][$n]);
                 $output .= ob_get_contents();
             }
-            ob_clean();
+            ob_end_clean();
+            // ob_clean();
             // Replacing pointers
+            $page_id = $this->friendlyGuacamole->RouterModule->state['controller']['id'];
             $pointers = $this->friendlyGuacamole->RouterModule->state['controller']['layout']['pointers'];
-            foreach ( $pointers as $pointer => $data ) {
+            foreach ( $pointers as $pointer_id => $data ) {
                 // Loading templates for current pointer
-                $templates = '';
+                $templates_stream = '';
+                $templates_stream .= '<'.$this->lib->convert_entity_id_to_wrapper_tagname($page_id, $pointer_id).'>';
                 ob_start();
                 for ( $i = 0; $i < count($data['templates']); $i++ ) {
                     require($data['templates'][$i]);
-                    $templates .= ob_get_contents();
+                    $templates_stream .= ob_get_contents();
                 }
-                ob_clean();
+                ob_end_clean();
+                // ob_clean();
+                $templates_stream .= '</'.$this->lib->convert_entity_id_to_wrapper_tagname($page_id, $pointer_id).'>';
                 // Replacing pointers with loaded templates
-                $output = str_replace( '{{layout-pointer.'.$pointer.'}}', $templates, $output );
+                $output = str_replace( '{{layout-pointer.'.$pointer_id.'}}', $templates_stream, $output );
             }
+            $output .= '</'.$this->lib->convert_entity_id_to_wrapper_tagname($layout_id).'>';
             // Returning html
             return $output;
         }
