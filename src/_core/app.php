@@ -13,16 +13,9 @@
 
     class FriendlyGuacamole {
 
-        // Directories
-        public $ROOT_DIR;
-        public $BUILD_DIR;
-        public $HOME_DIR;
-        public $CORE_DIR;
-        public $APP_DIR;
-        public $CONTENTS_DIR;
-        public $DATA_DIR;
-        public $PUBLIC_DIR;
-        // public $output;
+        // App
+        private $lib;
+        private $dir;
 
         // Settings
         public $SETTINGS;
@@ -38,22 +31,16 @@
         public $RenderModule;
 
         function __construct() {
-            // $this->output = '';
-            // Directories
-            $this->ROOT_DIR = str_replace('build/_core', '', __DIR__);
-            $this->BUILD_DIR = $this->ROOT_DIR.'build/';
-            $this->HOME_DIR = $this->ROOT_DIR.'src/';
-            $this->CORE_DIR = $this->HOME_DIR.'_core/';
-            $this->APP_DIR = $this->HOME_DIR.'app/';
-            $this->CONTENTS_DIR = $this->APP_DIR.'contents/';
-            $this->DATA_DIR = $this->APP_DIR.'data/';
-            $this->PUBLIC_DIR = $this->HOME_DIR.'public/';
+            global $lib;
+            $this->lib = $lib;
+            global $dir;
+            $this->dir = $dir;
         }
 
         // Settings
 
         private function load_settings() {
-            return json_decode(file_get_contents($this->APP_DIR.'settings.json'), true);
+            return json_decode(file_get_contents($this->dir->app.'settings.json'), true);
         }
 
         // Module initiators
@@ -89,5 +76,6 @@
 
     $lib = new Lib;
     $friendlyGuacamole = new FriendlyGuacamole;
+    $fg = $friendlyGuacamole;
 
 ?>

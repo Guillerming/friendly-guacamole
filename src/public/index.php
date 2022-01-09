@@ -1,48 +1,61 @@
 <?php
 
     // Load App
-    require_once('../_core/app.php');
-    // Init app + alias
+    require_once('../_core/dir.php');
+    require_once($dir->core.'app.php');
+    // Init app
     $friendlyGuacamole->init();
-    $fg = $friendlyGuacamole;
 
+    $debug = true;
+
+    // Print contents
     echo $friendlyGuacamole->RenderModule->render();
-    exit;
 
-    // Testing
-    echo '<p>PagesModule:</p>';
+    if ( !$debug ) { exit; }
+
+    echo '<style>h3 {margin-bottom:15px;} pre {display:block;padding:15px;border-radius:5px;background-color:#ededed;margin-bottom:30px;}</style>';
+
+    echo '<h3>LayoutsModule registry:</h3>';
     echo '<pre>';
-    var_dump( $fg->PagesModule->data() );
+    echo $lib->pretty_print_json($fg->LayoutsModule->data());
     echo '</pre>';
 
-    echo '<p>ComponentsModule:</p>';
+    echo '<h3>PagesModule registry:</h3>';
     echo '<pre>';
-    var_dump( $fg->ComponentsModule->data() );
+    echo $lib->pretty_print_json($fg->PagesModule->data());
     echo '</pre>';
 
-    echo '<p>LayoutsModule:</p>';
+    echo '<h3>ComponentsModule registry:</h3>';
     echo '<pre>';
-    var_dump( $fg->LayoutsModule->data() );
+    echo $lib->pretty_print_json($fg->ComponentsModule->data());
     echo '</pre>';
 
-    echo '<p>HttpModule:</p>';
+    echo '<hr>';
+
+    echo '<h3>HttpModule:</h3>';
     echo '<pre>';
-    var_dump( $fg->HttpModule->http );
+    echo $lib->pretty_print_json($fg->HttpModule->http);
     echo '</pre>';
 
-    echo '<p>RouterModule:</p>';
+    echo '<hr>';
+
+    echo '<h3>RouterModule:</h3>';
     echo '<pre>';
-    var_dump( $fg->RouterModule->routes );
+    echo $lib->pretty_print_json($fg->RouterModule->routes);
     echo '</pre>';
 
-    echo '<p>RouterModule state:</p>';
+    echo '<hr>';
+
+    echo '<h3>RouterModule state:</h3>';
     echo '<pre>';
-    var_dump($fg->RouterModule->state);
+    echo $lib->pretty_print_json($fg->RouterModule->state);
     echo '</pre>';
 
-    echo '<p>Settings:</p>';
+    echo '<hr>';
+
+    echo '<h3>Settings:</h3>';
     echo '<pre>';
-    var_dump($fg->SETTINGS);
+    echo $lib->pretty_print_json($fg->SETTINGS);
     echo '</pre>';
 
 ?>

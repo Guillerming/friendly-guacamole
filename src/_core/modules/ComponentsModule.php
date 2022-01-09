@@ -6,6 +6,7 @@
 
         private $friendlyGuacamole;
         private $lib;
+        private $dir;
         private $components_registry_filename = '_component.register.php';
 
         function __construct() {
@@ -13,11 +14,13 @@
             $this->friendlyGuacamole = $friendlyGuacamole;
             global $lib;
             $this->lib = $lib;
+            global $dir;
+            $this->dir = $dir;
         }
 
         public function register( $component, $path ) {
             // Trim path
-            $path = str_replace( $this->friendlyGuacamole->HOME_DIR, '', $path );
+            $path = str_replace( $this->dir->home, '', $path );
             $array = array();
             if ( isset($component['id']) ) {
                 $array['id'] = $component['id'];
@@ -73,7 +76,7 @@
             ob_start(null, 0, PHP_OUTPUT_HANDLER_FLUSHABLE | PHP_OUTPUT_HANDLER_REMOVABLE);
             global $friendlyGuacamole;
             for ( $n = 0; $n < count($this->components_registry[$component_id]['view']['templates']); $n++ ) {
-                require($this->friendlyGuacamole->BUILD_DIR.$this->components_registry[$component_id]['view']['templates'][$n]);
+                require($this->components_registry[$component_id]['view']['templates'][$n]);
                 // $output .= ob_get_contents();
             }
             // ob_clean();

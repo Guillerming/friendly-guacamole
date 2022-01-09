@@ -6,6 +6,7 @@
 
         private $friendlyGuacamole;
         private $lib;
+        private $dir;
         private $pages_registry_filename = '_page.register.php';
 
         function __construct() {
@@ -13,13 +14,15 @@
             $this->friendlyGuacamole = $friendlyGuacamole;
             global $lib;
             $this->lib = $lib;
+            global $dir;
+            $this->dir = $dir;
         }
 
         public function register( $page, $path ) {
             // TODO: All pages must contain id, pointers, layout and route
             // so verify $page contents and print error if there's anything missing
             // Trim path
-            $path = str_replace( $this->friendlyGuacamole->HOME_DIR, '', $path );
+            $path = str_replace( $this->dir->home, '', $path );
             // Init array var
             $array = array();
             // Copy $page contents to $array
@@ -81,7 +84,7 @@
             global $friendlyGuacamole;
             foreach ( $this->pages_registry[$page_id]['layout']['pointers'] as $pointer => $data) {
                 for ( $n = 0; $n < count($data['templates']); $n++ ) {
-                    require($this->friendlyGuacamole->BUILD_DIR.$data['templates'][$n]);
+                    require($data['templates'][$n]);
                     // $output .= ob_get_contents();
                 }
             }

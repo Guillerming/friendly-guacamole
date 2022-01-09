@@ -7,18 +7,21 @@
 
         private $friendlyGuacamole;
         private $lib;
+        private $dir;
 
         function __construct() {
             global $friendlyGuacamole;
             $this->friendlyGuacamole = $friendlyGuacamole;
             global $lib;
             $this->lib = $lib;
+            global $dir;
+            $this->dir = $dir;
         }
 
         // Private methods
 
         private function load_route_lang_file( $lang_code ) {
-            return json_decode( file_get_contents( $this->friendlyGuacamole->DATA_DIR.'i18n/routes/'.$lang_code.'.json' ), true);
+            return json_decode( file_get_contents( $this->dir->data.'i18n/routes/'.$lang_code.'.json' ), true);
         }
 
         private function load_routes() {

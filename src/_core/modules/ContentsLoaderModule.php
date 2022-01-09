@@ -3,6 +3,7 @@
     class ContentsLoaderModule {
 
         private $lib;
+        private $dir;
         private $friendlyGuacamole;
         private $code_elements;
 
@@ -21,6 +22,8 @@
             $this->friendlyGuacamole = $friendlyGuacamole;
             global $lib;
             $this->lib = $lib;
+            global $dir;
+            $this->dir = $dir;
         }
 
         // Private methods
@@ -94,7 +97,7 @@
         public function load( $target_file_name ) {
             $this->code_elements = array();
             $this->code_elements_filename = $target_file_name;
-            $this->check_directory( explode('/', $this->friendlyGuacamole->CONTENTS_DIR) );
+            $this->check_directory( explode('/', $this->dir->contents) );
             $this->require_elements();
         }
     }

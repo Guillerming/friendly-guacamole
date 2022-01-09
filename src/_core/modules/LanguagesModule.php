@@ -2,13 +2,16 @@
 
     class LanguagesModule {
 
+        private $dir;
         private $languages;
 
         private $languages_index_json_path;
 
         public function __construct() {
+            global $dir;
+            $this->dir = $dir;
             global $friendlyGuacamole;
-            $this->languages_index_json_path = $friendlyGuacamole->DATA_DIR.'languages.json';
+            $this->languages_index_json_path = $this->dir->data.'languages.json';
         }
 
         // Private methods

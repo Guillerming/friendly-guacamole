@@ -5,6 +5,7 @@
         private $layouts_registry;
 
         private $friendlyGuacamole;
+        private $dir;
         private $lib;
         private $layouts_registry_filename = '_layout.register.php';
 
@@ -13,11 +14,13 @@
             $this->friendlyGuacamole = $friendlyGuacamole;
             global $lib;
             $this->lib = $lib;
+            global $dir;
+            $this->dir = $dir;
         }
 
         public function register( $layout, $path ) {
             // Trim path
-            $path = str_replace( $this->friendlyGuacamole->HOME_DIR, '', $path );
+            $path = str_replace( $this->dir->home, '', $path );
             $array = array();
             if ( isset($layout['id']) ) {
                 $array['id'] = $layout['id'];
@@ -74,7 +77,7 @@
             ob_start();
             global $friendlyGuacamole;
             for ( $n = 0; $n < count($this->layouts_registry[$layout_id]['view']['templates']); $n++ ) {
-                require($this->friendlyGuacamole->BUILD_DIR.$this->layouts_registry[$layout_id]['view']['templates'][$n]);
+                require($this->layouts_registry[$layout_id]['view']['templates'][$n]);
                 $output .= ob_get_contents();
             }
             ob_clean();
@@ -85,7 +88,7 @@
                 $templates = '';
                 ob_start();
                 for ( $i = 0; $i < count($data['templates']); $i++ ) {
-                    require( $this->friendlyGuacamole->BUILD_DIR.$data['templates'][$i] );
+                    require($data['templates'][$i]);
                     $templates .= ob_get_contents();
                 }
                 ob_clean();

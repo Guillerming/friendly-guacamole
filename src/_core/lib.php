@@ -2,6 +2,10 @@
 
     class Lib {
 
+        public function pretty_print_json( $array ) {
+            return str_replace('\/', '/', json_encode( $array, JSON_PRETTY_PRINT ) );
+        }
+
         public function load_json_file( $path ) {
             return json_decode( file_get_contents( $path ), true );
         }
