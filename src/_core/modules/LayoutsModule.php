@@ -74,7 +74,6 @@
             $output = '';
             ob_start();
             global $friendlyGuacamole;
-            $output .= '<'.$this->lib->convert_entity_id_to_wrapper_tagname($layout_id).'>';
             for ( $n = 0; $n < count($this->layouts_registry[$layout_id]['view']['templates']); $n++ ) {
                 require($this->layouts_registry[$layout_id]['view']['templates'][$n]);
                 $output .= ob_get_contents();
@@ -99,7 +98,9 @@
                 // Replacing pointers with loaded templates
                 $output = str_replace( '{{layout-pointer.'.$pointer_id.'}}', $templates_stream, $output );
             }
-            $output .= '</'.$this->lib->convert_entity_id_to_wrapper_tagname($layout_id).'>';
+            // Append layout tag wrapper
+            $output = str_replace('<body>', '<body>'.'<'.$this->lib->convert_entity_id_to_wrapper_tagname($layout_id).'>', $output);
+            $output = str_replace('</body>', '</body>'.'</'.$this->lib->convert_entity_id_to_wrapper_tagname($layout_id).'>', $output);
             // Returning html
             return $output;
         }
