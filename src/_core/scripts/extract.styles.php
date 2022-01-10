@@ -20,6 +20,13 @@
         return str_replace($dir->build.'app/', '', $path);
     }
 
+    function trim_css_extension( $path ) {
+        if ( substr( $path, strlen($path) - 4, 4 ) == '.css' ) {
+            return substr( $path, 0, strlen($path) - 4 );
+        }
+        return $path;
+    }
+
     // Composes the temp.styles.json file
     function compose_json_file() {
 
@@ -39,7 +46,7 @@
         // Vendor
         $styles['vendor'] = array();
         for ( $n = 0; $n < count($settings['dependencies']['styles']); $n++ ) {
-            $styles['vendor'][$n] = $dir->app.$settings['dependencies']['styles'][$n];
+            $styles['vendor'][$n] = $dir->app.trim_css_extension($settings['dependencies']['styles'][$n]);
         }
 
         // Layouts

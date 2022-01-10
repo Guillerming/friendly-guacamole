@@ -1,27 +1,15 @@
 'use strict';
 const { src, dest } = require('gulp');
 const config = require('../config');
-const projectjson = require('../../src/app/settings.json');
 
-const concat = require('gulp-concat');
+const rename = require('gulp-rename');
 const sass = require('gulp-dart-sass');
 
-function process_dependencies() {
-    var styles = projectjson.dependencies.styles;
-    for ( var n = 0; n < styles.length; n++ ) {
-        styles[n] = 'node_modules/' + styles[n];
-    }
-    return src(styles)
+function compile() {
+    return src(config.cfg.path.dist + 'app/temp.styles.scss')
         .pipe(sass())
-        .pipe(concat('dependencies.css'))
-        .pipe(dest(config.cfg.path.dist + 'assets/css/'));
+        .pipe(rename('styles.css'))
+        .pipe(dest(config.cfg.path.dist + 'public/assets/css/'));
 }
 
-function process_scss() {
-    return src('src/assets/scss/main.scss')
-        .pipe(sass())
-        .pipe(dest(config.cfg.path.dist + 'assets/css/'));
-}
-
-exports.dependencies = process_dependencies;
-exports.run = process_scss;
+exports.run = compile;
