@@ -6,7 +6,7 @@
     // Init app
     $friendlyGuacamole->init();
 
-    $debug = true;
+    $debug = false;
 
     // Print contents
     echo $friendlyGuacamole->RenderModule->render();
