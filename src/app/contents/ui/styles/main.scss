@@ -1,5 +1,5 @@
 /**
-  * Global Stylesheet - styles.scss
+  * Global Stylesheet - main.scss
   * This is your global stylesheet.
   * 
   * It is used to define your base styles and variables.
@@ -11,9 +11,8 @@
   * - The following styles will be loaded before all your entities stylesheets
   * such as layouts, pages and components, which means that any style here can
   * be overwritten by those definitions in your entities stylesheets.
-  * - A good practice is to create a ui/ folder next to this file and put in
-  * there the files to be included here with variables and mixins, and so on:
-  *   @import ui/styles/variables.scss
-  *   @import ui/styles/mixins.scss
+  * - A good practice is to use the imports/ folder next to this file and put in
+  * there the files to be included here with variables, mixins, and so on:
+  *   @import imports/variables.scss
+  *   @import imports/mixins.scss
   */
-
