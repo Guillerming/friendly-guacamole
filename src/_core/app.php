@@ -10,6 +10,7 @@
     require_once('modules/HttpModule.php');
     require_once('modules/RouterModule.php');
     require_once('modules/RenderModule.php');
+    require_once('modules/ScriptsModule.php');
 
     class FriendlyGuacamole {
 
@@ -29,6 +30,7 @@
         public $HttpModule;
         public $RouterModule;
         public $RenderModule;
+        public $ScriptsModule;
 
         function __construct() {
             global $lib;
@@ -55,6 +57,7 @@
             $this->HttpModule = new HttpModule();
             $this->RouterModule = new RouterModule();
             $this->RenderModule = new RenderModule();
+            $this->ScriptsModule = new ScriptsModule();
             // Init Modules
             $this->LanguagesModule->init();
             $this->LayoutsModule->init();
@@ -62,6 +65,7 @@
             $this->ComponentsModule->init();
             $this->HttpModule->init();
             $this->RouterModule->init();
+            $this->ScriptsModule->init();
         }
 
         // Init
