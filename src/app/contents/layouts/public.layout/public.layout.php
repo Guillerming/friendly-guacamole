@@ -1,8 +1,13 @@
 <html>
 
     <head>
-        <title>My first FriendlyGuacamole app - Public Layout</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
         <link type="text/css" rel="stylesheet" href="assets/css/styles.css" />
+        <script type="text/javascript" src="assets/js/main.js"></script>
+
+        <title>My first FriendlyGuacamole app - Public Layout</title>
     </head>
     <body>
 
