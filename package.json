@@ -15,7 +15,8 @@
     "build": "gulp build",
     "build:pre": "npm run extract:styles",
     "build:vendor": "php src/_core/scripts/build.vendor.scss.php && php src/_core/scripts/build.vendor.js.php",
-    "extract:styles": "php src/_core/scripts/extract.styles.php"
+    "extract:styles": "php src/_core/scripts/extract.styles.php",
+    "extract:scripts": "php src/_core/scripts/extract.scripts.php"
   },
   "devDependencies": {
     "gulp": "^4.0.2",
