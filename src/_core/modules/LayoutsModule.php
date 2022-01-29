@@ -47,16 +47,6 @@
             $this->layouts_registry[$layout['id']] = $array;
         }
 
-        public function get_index( $id ) {
-            $index = 0;
-            foreach ( $this->layouts_registry as $layout_id => $layout_data ) {
-                if ( $layout_id == $id ) {
-                    return $index;
-                }
-                $index++;
-            }
-        }
-
         // TODO:
         // private function validatePath( ) {
             // when a layout is submitted validate it has/or it
