@@ -58,7 +58,7 @@
         foreach( $fg->LayoutsModule->data() as $id => $layout ) {
             array_push($scripts_layouts, [
                 'wrapper' => $lib->convert_entity_id_to_wrapper_tagname($id),
-                'scripts' => $layout['view']['scripts'],
+                'files' => $layout['view']['scripts'],
             ]);
         }
         $scripts['user'] = array_merge($scripts['user'], $scripts_layouts);

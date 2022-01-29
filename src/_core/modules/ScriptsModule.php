@@ -17,7 +17,7 @@
             if ( !$this->scripts ) { return null; }
             for ( $n = 0; $n < count($this->scripts['user']); $n++ ) {
                 if ( $this->scripts['user'][$n]['wrapper'] == $html_tag ) {
-                    return $this->scripts['user'][$n]['scripts'];
+                    return $this->scripts['user'][$n]['files'];
                 }
             }
         }
