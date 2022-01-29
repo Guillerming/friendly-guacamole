@@ -20,21 +20,13 @@
                     return $this->scripts['user'][$n]['scripts'];
                 }
             }
-            return [$this->scripts['user']];
         }
 
         private function html( $script_files, $html_tag, $wrapper ) {
             $html = '';
-            $log = array();
             for ( $n = 0; $n < count($script_files); $n++ ) {
-                array_push($log, $n);
                 $contents = file_get_contents($script_files[$n]);
                 $html .= $contents;
-                if ( !$contents ) {
-                    array_push($log, $script_files[$n].' failed');
-                } else {
-                    array_push($log, $script_files[$n].' succeeded');
-                }
             }
 
             $model = $this->scripts_model;
