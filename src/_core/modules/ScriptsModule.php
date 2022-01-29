@@ -29,6 +29,8 @@
                 $html .= $contents;
             }
 
+            if ( !strlen($html) ) { return ''; }
+
             $model = $this->scripts_model;
             $model = str_replace('{{wrapper}}', $wrapper, $model);
             $model = str_replace('{{html_tag}}', $html_tag, $model);
