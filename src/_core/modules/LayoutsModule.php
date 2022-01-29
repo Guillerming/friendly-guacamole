@@ -84,9 +84,15 @@
             $page_id = $this->friendlyGuacamole->RouterModule->state['controller']['id'];
             $pointers = $this->friendlyGuacamole->RouterModule->state['controller']['layout']['pointers'];
             foreach ( $pointers as $pointer_id => $data ) {
+                // Preparing page capsule (wrapper)
+                $page_wrapper  = $friendlyGuacamole->SETTINGS['wrapper']['prefix'];
+                $page_wrapper .= 'pag-';
+                $page_wrapper .= substr(md5(rand(0,9).(new DateTime())->getTimestamp()),0,3);
+                // Get scripts
+                $page_scripts = $friendlyGuacamole->ScriptsModule->get($this->lib->convert_entity_id_to_wrapper_tagname($page_id, $pointer_id), $page_wrapper);
                 // Loading templates for current pointer
                 $templates_stream = '';
-                $templates_stream .= '<'.$this->lib->convert_entity_id_to_wrapper_tagname($page_id, $pointer_id).'>';
+                $templates_stream .= '<'.$this->lib->convert_entity_id_to_wrapper_tagname($page_id, $pointer_id).' '.$page_wrapper.'>';
                 ob_start();
                 for ( $i = 0; $i < count($data['templates']); $i++ ) {
                     require($data['templates'][$i]);
@@ -94,7 +100,7 @@
                 }
                 ob_end_clean();
                 // ob_clean();
-                $templates_stream .= '</'.$this->lib->convert_entity_id_to_wrapper_tagname($page_id, $pointer_id).'>';
+                $templates_stream .= $page_scripts.'</'.$this->lib->convert_entity_id_to_wrapper_tagname($page_id, $pointer_id).'>';
                 // Replacing pointers with loaded templates
                 $output = str_replace( '{{layout-pointer.'.$pointer_id.'}}', $templates_stream, $output );
             }
