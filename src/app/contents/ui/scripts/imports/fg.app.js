@@ -1,3 +1,5 @@
-window.addEventListener('load', function() {
+function init() {
     fg.scriptLoader.run();
-});
+}
+
+window.addEventListener('load', init);
