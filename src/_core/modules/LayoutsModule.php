@@ -98,16 +98,15 @@
                 // Replacing pointers with loaded templates
                 $output = str_replace( '{{layout-pointer.'.$pointer_id.'}}', $templates_stream, $output );
             }
-            // Preparing entity capsule (wrapper)
-            $wrapper  = $friendlyGuacamole->SETTINGS['wrapper']['prefix'];
-            $wrapper .= 'lay-';
-            $wrapper .= substr(md5(rand(0,9).(new DateTime())->getTimestamp()),0,3);
-            // $wrapper .= '-'.$this->get_index($layout_id);
+            // Preparing layout capsule (wrapper)
+            $layout_wrapper  = $friendlyGuacamole->SETTINGS['wrapper']['prefix'];
+            $layout_wrapper .= 'lay-';
+            $layout_wrapper .= substr(md5(rand(0,9).(new DateTime())->getTimestamp()),0,3);
             // Get scripts
-            $scripts = $friendlyGuacamole->ScriptsModule->get($this->lib->convert_entity_id_to_wrapper_tagname($layout_id), $wrapper);
+            $layout_scripts = $friendlyGuacamole->ScriptsModule->get($this->lib->convert_entity_id_to_wrapper_tagname($layout_id), $layout_wrapper);
             // Append layout tag wrapper
-            $output = str_replace('<body>', '<body>'.'<'.$this->lib->convert_entity_id_to_wrapper_tagname($layout_id).' '.$wrapper.'>', $output);
-            $output = str_replace('</body>', $scripts.'</body>'.'</'.$this->lib->convert_entity_id_to_wrapper_tagname($layout_id).'>', $output);
+            $output = str_replace('<body>', '<body>'.'<'.$this->lib->convert_entity_id_to_wrapper_tagname($layout_id).' '.$layout_wrapper.'>', $output);
+            $output = str_replace('</body>', $layout_scripts.'</body>'.'</'.$this->lib->convert_entity_id_to_wrapper_tagname($layout_id).'>', $output);
             // Returning html
             return $output;
         }
