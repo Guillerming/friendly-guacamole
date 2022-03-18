@@ -81,6 +81,7 @@
             $output .= '<'.$component_tagname.' '.$component_wrapper.'>';
             ob_start(null, 0, PHP_OUTPUT_HANDLER_FLUSHABLE | PHP_OUTPUT_HANDLER_REMOVABLE);
             global $friendlyGuacamole;
+            global $fg;
             for ( $n = 0; $n < count($this->components_registry[$component_id]['view']['templates']); $n++ ) {
                 require($this->components_registry[$component_id]['view']['templates'][$n]);
                 $output .= ob_get_contents();

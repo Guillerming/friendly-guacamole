@@ -80,6 +80,7 @@
             $output = '';
             ob_start();
             global $friendlyGuacamole;
+            global $fg;
             foreach ($this->layouts_registry[$layout_id]['view']['templates'] as $template) {
                 require($template);
                 $output .= ob_get_contents();
