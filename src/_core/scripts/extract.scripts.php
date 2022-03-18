@@ -57,7 +57,7 @@
         $scripts_layouts = array();
         foreach( $fg->LayoutsModule->data() as $id => $layout ) {
             array_push($scripts_layouts, [
-                'wrapper' => $lib->convert_entity_id_to_wrapper_tagname($id),
+                'wrapper' => $lib->create_wrapper_tagname($id),
                 'files' => $layout['view']['scripts'],
             ]);
         }
@@ -68,7 +68,7 @@
         foreach( $fg->PagesModule->data() as $id => $page ) {
             foreach ( $page['layout']['pointers'] as $pointer => $data ) {
                 $array = [
-                    'wrapper' => $lib->convert_entity_id_to_wrapper_tagname($id, $pointer),
+                    'wrapper' => $lib->create_wrapper_tagname($id, $pointer),
                     'files' => $data['scripts']
                 ];
                 array_push($scripts_pages, $array);
@@ -80,7 +80,7 @@
         $scripts_components = array();
         foreach( $fg->ComponentsModule->data() as $id => $component ) {
             $array = [
-                'wrapper' => $lib->convert_entity_id_to_wrapper_tagname($id),
+                'wrapper' => $lib->create_wrapper_tagname($id),
                 'files' => $component['view']['scripts'],
             ];
             array_push($scripts_components, $array);

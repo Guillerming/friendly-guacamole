@@ -110,7 +110,7 @@
 
         // Layouts
         foreach( $styles['layouts'] as $layout ) {
-            $scss .= $lib->convert_entity_id_to_wrapper_tagname($layout['id']).' {'."\n";
+            $scss .= $lib->create_wrapper_tagname($layout['id']).' {'."\n";
             for ( $n = 0; $n < count($layout['styles']); $n++ ) {
                 $scss .= '  @import "'.remove_build_dir($layout['styles'][$n]).'";'."\n";
             }
@@ -120,7 +120,7 @@
         // Pages
         foreach( $styles['pages'] as $page ) {
             for ( $n = 0; $n < count($page['styles']); $n++ ) {
-                $scss .= $lib->convert_entity_id_to_wrapper_tagname($page['id'], $page['styles'][$n]['pointer']).' {'."\n";
+                $scss .= $lib->create_wrapper_tagname($page['id'], $page['styles'][$n]['pointer']).' {'."\n";
                 for ( $i = 0; $i < count($page['styles'][$n]['files']); $i++ ) {
                     $scss .= '  @import "'.remove_build_dir($page['styles'][$n]['files'][$i]).'";'."\n";
                 }

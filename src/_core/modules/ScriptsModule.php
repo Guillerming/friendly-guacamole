@@ -25,8 +25,7 @@
         private function html( $script_files, $html_tag, $wrapper ) {
             $html = '';
             for ( $n = 0; $n < count($script_files); $n++ ) {
-                $contents = file_get_contents($script_files[$n]);
-                $html .= $contents;
+                $html .= file_get_contents($script_files[$n]);
             }
 
             if ( !strlen($html) ) { return ''; }

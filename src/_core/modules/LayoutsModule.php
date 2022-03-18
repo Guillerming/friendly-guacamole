@@ -70,49 +70,48 @@
             if ( !isset($this->layouts_registry[$layout_id]) ) {
                 return false;
             }
+            // Preparing vars
+            $layout_tagname = $this->lib->create_wrapper_tagname($layout_id);
+            // Preparing layout capsule (wrapper)
+            $layout_wrapper = $this->lib->create_wrapper_attr('layout');
+            // Get scripts
+            $layout_scripts = $this->friendlyGuacamole->ScriptsModule->get($layout_tagname, $layout_wrapper);
             // Loading layout templates
             $output = '';
             ob_start();
             global $friendlyGuacamole;
-            for ( $n = 0; $n < count($this->layouts_registry[$layout_id]['view']['templates']); $n++ ) {
-                require($this->layouts_registry[$layout_id]['view']['templates'][$n]);
+            foreach ($this->layouts_registry[$layout_id]['view']['templates'] as $template) {
+                require($template);
                 $output .= ob_get_contents();
             }
             ob_end_clean();
-            // ob_clean();
             // Replacing pointers
             $page_id = $this->friendlyGuacamole->RouterModule->state['controller']['id'];
             $pointers = $this->friendlyGuacamole->RouterModule->state['controller']['layout']['pointers'];
             foreach ( $pointers as $pointer_id => $data ) {
+                // Preparing vars
+                $page_tagname = $this->lib->create_wrapper_tagname($page_id, $pointer_id);
                 // Preparing page capsule (wrapper)
-                $page_wrapper  = $friendlyGuacamole->SETTINGS['wrapper']['prefix'];
-                $page_wrapper .= 'pag-';
-                $page_wrapper .= substr(md5(rand(0,9).(new DateTime())->getTimestamp()),0,3);
+                $page_wrapper = $this->lib->create_wrapper_attr('page');
                 // Get scripts
-                $page_scripts = $friendlyGuacamole->ScriptsModule->get($this->lib->convert_entity_id_to_wrapper_tagname($page_id, $pointer_id), $page_wrapper);
-                // Loading templates for current pointer
+                $page_scripts = $this->friendlyGuacamole->ScriptsModule->get($page_tagname, $page_wrapper);
+                // Templates stream
                 $templates_stream = '';
-                $templates_stream .= '<'.$this->lib->convert_entity_id_to_wrapper_tagname($page_id, $pointer_id).' '.$page_wrapper.'>';
+                $templates_stream .= '<'.$page_tagname.' '.$page_wrapper.'>';
+                // Looping through templates for current pointer
                 ob_start();
                 for ( $i = 0; $i < count($data['templates']); $i++ ) {
                     require($data['templates'][$i]);
                     $templates_stream .= ob_get_contents();
                 }
                 ob_end_clean();
-                // ob_clean();
-                $templates_stream .= $page_scripts.'</'.$this->lib->convert_entity_id_to_wrapper_tagname($page_id, $pointer_id).'>';
+                $templates_stream .= $page_scripts.'</'.$page_tagname.'>';
                 // Replacing pointers with loaded templates
                 $output = str_replace( '{{layout-pointer.'.$pointer_id.'}}', $templates_stream, $output );
             }
-            // Preparing layout capsule (wrapper)
-            $layout_wrapper  = $friendlyGuacamole->SETTINGS['wrapper']['prefix'];
-            $layout_wrapper .= 'lay-';
-            $layout_wrapper .= substr(md5(rand(0,9).(new DateTime())->getTimestamp()),0,3);
-            // Get scripts
-            $layout_scripts = $friendlyGuacamole->ScriptsModule->get($this->lib->convert_entity_id_to_wrapper_tagname($layout_id), $layout_wrapper);
             // Append layout tag wrapper
-            $output = str_replace('<body>', '<body>'.'<'.$this->lib->convert_entity_id_to_wrapper_tagname($layout_id).' '.$layout_wrapper.'>', $output);
-            $output = str_replace('</body>', $layout_scripts.'</body>'.'</'.$this->lib->convert_entity_id_to_wrapper_tagname($layout_id).'>', $output);
+            $output = str_replace('<body>', '<body>'.'<'.$layout_tagname.' '.$layout_wrapper.'>', $output);
+            $output = str_replace('</body>', $layout_scripts.'</body>'.'</'.$layout_tagname.'>', $output);
             // Returning html
             return $output;
         }
