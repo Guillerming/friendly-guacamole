@@ -32,6 +32,7 @@
         public $RenderModule;
         public $ScriptsModule;
 
+        // Constructor
         function __construct() {
             global $lib;
             $this->lib = $lib;
@@ -39,13 +40,19 @@
             $this->dir = $dir;
         }
 
-        // Settings
+        /*
+         * Settings
+         */
 
         private function load_settings() {
             return json_decode(file_get_contents($this->dir->app.'settings.json'), true);
         }
 
-        // Module initiators
+        /*
+         * Module initiators
+         * 
+         * It executes all modules initiators
+         */
 
         private function init_modules() {
             // Assign Modules
@@ -58,7 +65,7 @@
             $this->RouterModule = new RouterModule();
             $this->RenderModule = new RenderModule();
             $this->ScriptsModule = new ScriptsModule();
-            // Init Modules
+            // Init Public Modules
             $this->LanguagesModule->init();
             $this->LayoutsModule->init();
             $this->PagesModule->init();
@@ -68,7 +75,11 @@
             $this->ScriptsModule->init();
         }
 
-        // Init
+        /*
+         * App Init
+         * 
+         * Starts the app
+         */
 
         public function init() {
             // Settings
@@ -76,10 +87,23 @@
             // Modules
             $this->init_modules();
         }
+
+
+        /*
+         * Component HTML getter
+         * 
+         * This is meant to enable a shorter way to load
+         * components' html
+         */
+
+        public function html( $id ) {
+            return $this->ComponentsModule->html($id);
+        }
     }
 
     $lib = new Lib;
     $friendlyGuacamole = new FriendlyGuacamole;
-    $fg = $friendlyGuacamole; // Alias
+    // Alias
+    $fg = $friendlyGuacamole;
 
 ?>

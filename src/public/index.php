@@ -1,12 +1,13 @@
 <?php
 
+    // Config
+    $debug = false;
+
     // Load App
     require_once('../_core/dir.php');
     require_once($dir->core.'app.php');
     // Init app
     $friendlyGuacamole->init();
-
-    $debug = false;
 
     // Print contents
     echo $friendlyGuacamole->RenderModule->render();

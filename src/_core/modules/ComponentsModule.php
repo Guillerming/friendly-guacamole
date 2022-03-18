@@ -70,23 +70,25 @@
             if ( !isset($this->components_registry[$component_id]) ) {
                 return false;
             }
+            // Preparing vars
+            $component_tagname = $this->lib->create_wrapper_tagname($component_id);
             // Preparing component capsule (wrapper)
-            $component_wrapper  = $this->friendlyGuacamole->SETTINGS['wrapper']['prefix'];
-            $component_wrapper .= 'com-';
-            $component_wrapper .= substr(md5(rand(0,9).(new DateTime())->getTimestamp()),0,3);
+            $component_wrapper = $this->lib->create_wrapper_attr('component');
             // Get scripts
-            $component_scripts = $this->friendlyGuacamole->ScriptsModule->get($this->lib->convert_entity_id_to_wrapper_tagname($component_id), $component_wrapper);
+            $component_scripts = $this->friendlyGuacamole->ScriptsModule->get($component_tagname, $component_wrapper);
+            // HTML output
             $output = '';
-            $output .= '<'.$this->lib->convert_entity_id_to_wrapper_tagname($component_id).' '.$component_wrapper.'>';
+            $output .= '<'.$component_tagname.' '.$component_wrapper.'>';
             ob_start(null, 0, PHP_OUTPUT_HANDLER_FLUSHABLE | PHP_OUTPUT_HANDLER_REMOVABLE);
             global $friendlyGuacamole;
+            global $fg;
             for ( $n = 0; $n < count($this->components_registry[$component_id]['view']['templates']); $n++ ) {
                 require($this->components_registry[$component_id]['view']['templates'][$n]);
                 $output .= ob_get_contents();
             }
             ob_end_clean();
             // Append layout tag wrapper
-            $output .= $component_scripts.'</'.$this->lib->convert_entity_id_to_wrapper_tagname($component_id).'>';
+            $output .= $component_scripts.'</'.$component_tagname.'>';
             return $output;
         }
 

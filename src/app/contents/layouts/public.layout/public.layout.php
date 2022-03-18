@@ -11,11 +11,11 @@
     </head>
     <body>
 
-        <?php echo $friendlyGuacamole->ComponentsModule->html('COMPONENT_HEADER'); ?>
+        <?php echo $fg->html('COMPONENT_HEADER'); ?>
 
         {{layout-pointer.main}}
 
-        <?php echo $friendlyGuacamole->ComponentsModule->html('COMPONENT_FOOTER'); ?>
+        <?php echo $fg->html('COMPONENT_FOOTER'); ?>
 
     </body>
 
