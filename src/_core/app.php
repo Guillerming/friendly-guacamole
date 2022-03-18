@@ -2,6 +2,8 @@
 
     require_once('lib.php');
 
+    require_once('modules/ErrorModule.php');
+
     require_once('modules/LanguagesModule.php');
     require_once('modules/ContentsLoaderModule.php');
     require_once('modules/LayoutsModule.php');
@@ -21,7 +23,8 @@
         // Settings
         public $SETTINGS;
 
-        // Modules
+        // Public Modules
+        public $ErrorModule;
         public $LanguagesModule;
         public $ContentsLoaderModule;
         public $LayoutsModule;
@@ -56,6 +59,7 @@
 
         private function init_modules() {
             // Assign Modules
+            $this->ErrorModule = new ErrorModule();
             $this->LanguagesModule = new LanguagesModule();
             $this->ContentsLoaderModule = new ContentsLoaderModule();
             $this->LayoutsModule = new LayoutsModule();
