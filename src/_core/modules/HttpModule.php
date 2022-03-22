@@ -60,14 +60,19 @@
 
         private function gatherHttpData() {
 
-            $this->http['url'] = [
-                'path' => $this->get_path(),
-                'search' => $this->get_search(),
-                'params' => $this->get_params(),
-                'protocol' => $this->server('SERVER_PROTOCOL'),
-                'host' => $this->server('HTTP_HOST'),
-                'port' => $this->server('SERVER_PORT'),
-                'method' => $this->server('REQUEST_METHOD')
+            $this->http = [
+                'url' => [
+                    'path' => $this->get_path(),
+                    'search' => $this->get_search(),
+                    'params' => $this->get_params(),
+                    'protocol' => $this->server('SERVER_PROTOCOL'),
+                    'host' => $this->server('HTTP_HOST'),
+                    'port' => $this->server('SERVER_PORT'),
+                ],
+                'headers' => [
+                    'method' => $this->server('REQUEST_METHOD'),
+                    'supported_languages' => $this->server('HTTP_ACCEPT_LANGUAGE'),
+                ]
             ];
 
         }

@@ -13,6 +13,7 @@
     require_once('modules/RouterModule.php');
     require_once('modules/RenderModule.php');
     require_once('modules/ScriptsModule.php');
+    require_once('modules/VisitorModule.php');
 
     class FriendlyGuacamole {
 
@@ -34,6 +35,7 @@
         public $RouterModule;
         public $RenderModule;
         public $ScriptsModule;
+        public $VisitorModule;
 
         // Constructor
         function __construct() {
@@ -69,6 +71,7 @@
             $this->RouterModule = new RouterModule();
             $this->RenderModule = new RenderModule();
             $this->ScriptsModule = new ScriptsModule();
+            $this->VisitorModule = new VisitorModule();
             // Init Public Modules
             $this->LanguagesModule->init();
             $this->LayoutsModule->init();
@@ -77,6 +80,7 @@
             $this->HttpModule->init();
             $this->RouterModule->init();
             $this->ScriptsModule->init();
+            $this->VisitorModule->init();
         }
 
         /*

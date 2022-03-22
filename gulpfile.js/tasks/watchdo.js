@@ -1,6 +1,7 @@
 const { series, parallel } = require('gulp');
 
 const clean = require('../tasks/clean');
+const env = require('../tasks/env');
 const copy = require('../tasks/copy');
 const scss = require('../tasks/scss');
 const js = require('../tasks/js');
@@ -37,6 +38,7 @@ exports.run = series(
         extract_scripts,
     ),
     parallel(
+        env.dev,
         scss.run,
         js.run,
     )

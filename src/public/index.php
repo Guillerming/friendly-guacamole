@@ -1,7 +1,7 @@
 <?php
 
     // Config
-    $debug = false;
+    $debug = true;
 
     // Load App
     require_once('../_core/dir.php');
@@ -40,7 +40,7 @@
 
     echo '<hr>';
 
-    echo '<h3>RouterModule:</h3>';
+    echo '<h3>RouterModule registry:</h3>';
     echo '<pre>';
     echo $lib->pretty_print_json($fg->RouterModule->routes);
     echo '</pre>';

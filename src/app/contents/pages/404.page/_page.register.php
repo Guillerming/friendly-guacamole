@@ -1,0 +1,1 @@
+<?php    global $lib;    global $friendlyGuacamole;    $page = $lib->load_json_file(__DIR__.'/_page.data.json');    $friendlyGuacamole->PagesModule->register($page, __DIR__);?>

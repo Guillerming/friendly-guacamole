@@ -24,6 +24,10 @@
             return $string;
         }
 
+        public function remove_double_slashes( $string ) {
+            return str_replace('//', '/', $string);
+        }
+
         public function create_wrapper_tagname( $id, $addon = null ) {
             global $friendlyGuacamole;
             $tagname = $friendlyGuacamole->SETTINGS['wrapper']['prefix'].$id;
