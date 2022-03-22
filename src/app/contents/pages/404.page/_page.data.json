@@ -1,0 +1,17 @@
+{
+    "id": "PAGE_404",
+    "layout": {
+        "id": "LAYOUT_PUBLIC",
+        "pointers": {
+            "main": {
+                "scripts": ["404.page.js"],
+                "styles": ["404.page.scss"],
+                "templates": ["404.page.php"]
+            }
+        }
+    },
+    "route": {
+        "id": null,
+        "method": "GET"
+    }
+}
