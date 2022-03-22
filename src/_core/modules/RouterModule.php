@@ -50,7 +50,10 @@
                         $prefix .= $lang_code;
                     }
                     // Append path
-                    $route['paths'][$lang_code] = $this->lib->remove_trailing_slash($prefix.$routes_lang_file_data[$page['route']['id']]);
+                    $temp = $prefix.$routes_lang_file_data[$page['route']['id']];
+                    $temp = $this->lib->remove_trailing_slash($temp);
+                    $temp = $this->lib->remove_double_slashes($temp);
+                    $route['paths'][$lang_code] = $temp;
                 }
                 // Dump
                 $this->routes[$page['route']['id']] = $route;
@@ -58,7 +61,7 @@
         }
 
         private function find_matching_path( $url_path ) {
-            // TODO: Err pages, dynamic urls...
+            // Static URLs
             foreach ( $this->routes as $id => $route ) {
                 foreach ( $route['paths'] as $lang_code => $path ) {
                     if ( $url_path == $path ) {
@@ -70,10 +73,33 @@
                     }
                 }
             }
-            return false;
+            // TODO: Dynamic URLs
+            // foreach () ...
+            // Error page
+            return $this->get_error_page(404);
         }
 
         // Public methods
+
+        public function get_error_page( $error_code ) {
+            if ( !$error_code ) { return false; }
+
+            $data = array(
+                'route' => null,
+                'language' => $this->friendlyGuacamole->VisitorModule->get_lang(),
+                'controller' => null
+            );
+
+            if ( $error_code == 403 ) {
+                $data['controller'] = $this->friendlyGuacamole->PagesModule->data( 'PAGE_403' );
+            } else if ( $error_code == 404 ) {
+                $data['controller'] = $this->friendlyGuacamole->PagesModule->data( 'PAGE_404' );
+            } else {
+                $data['controller'] = $this->friendlyGuacamole->PagesModule->data( 'PAGE_500' );
+            }
+
+            return $data;
+        }
 
         public function init() {
             $this->load_routes();
