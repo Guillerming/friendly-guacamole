@@ -1,4 +1,6 @@
 {
+    "base_url": "{{base_url}}",
+    "version": "{{version}}",
     "dependencies": {
         "styles": [
             "../../node_modules/bootstrap/dist/css/bootstrap.min.css",

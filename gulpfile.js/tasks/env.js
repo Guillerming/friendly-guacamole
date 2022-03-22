@@ -14,33 +14,31 @@ function getVersion() {
     return buildVersion.join('.');
 }
 
-function phpConfig() {
-    var obj = {
+function settingsJson() {
+    var settings = {
         version: getVersion(),
         base_url: config.cfg.env[environment].base_url
     };
-    return src(config.cfg.path.dist + 'core/config.php')
-        .pipe(pupa(obj))
-        // .pipe(gulpReplace("'production' => false,", "'production' => " + config.cfg.env[environment].production + ","))
-        // .pipe(gulpReplace("'local' => false,", "'local' => " + config.cfg.env[environment].local + ","))
-        .pipe(dest(config.cfg.path.dist + 'core/'));
+    return src(config.cfg.path.dist + 'app/settings.json')
+        .pipe(pupa(settings))
+        .pipe(dest(config.cfg.path.dist + 'app/'));
 }
 
 async function environment_dev() {
     environment = 'dev';
-    phpConfig();
+    settingsJson();
 }
 
 
 async function environment_staging() {
     environment = 'staging';
-    phpConfig();
+    settingsJson();
 }
 
 
 async function environment_prod() {
     environment = 'prod';
-    phpConfig();
+    settingsJson();
 }
 
 
